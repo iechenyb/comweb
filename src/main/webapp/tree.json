@@ -1,0 +1,199 @@
+
+[{
+    "title": "系统菜单",
+    "type": "folder",
+    "products":
+[
+  {
+    "title": "苹果公司",
+    "type": "folder",
+    "products": [
+      {
+        "id":1,
+        "title": "iPhone",
+        "type": "item"
+      },
+      {
+        "id":2,
+        "title": "iMac",
+        "type": "item"
+      },
+      {
+        "id":3,
+        "title": "MacBook Pro",
+        "type": "item"
+      }
+    ]
+  },
+  {
+    "title": "联想公司",
+    "type": "folder",
+    "products": [
+      {
+        "id":4,
+        "title": "iPhone",
+        "type": "item"
+      },
+      {
+        "id":5,
+        "title": "iMac111111111111111111",
+        "type": "item"
+      },
+      {
+        "id":6,
+        "title": "MacBook Pro",
+        "type": "folder",
+        "products":[
+          {
+	        "id":4,
+	        "title": "iPhone222222222222",
+	        "type": "item"
+	      },
+	      {
+	        "id":5,
+	        "title": "iMac",
+	        "type": "folder",
+	        "products":[
+	         {
+		      "id":1,
+		      "title": "iPhone555555",
+		      "type": "item"
+		    },
+		    {
+		      "id":2,
+		      "title": "iMac",
+		      "type": "item"
+		    }
+	         ]
+	      }
+        ]
+      }
+    ]
+  },{
+	  "title": "东方航空",
+	  "type": "folder",
+	  "products": [
+	    {
+	      "id":1,
+	      "title": "iPhone",
+	      "type": "item"
+	    },
+	    {
+	      "id":2,
+	      "title": "iMac",
+	      "type": "item"
+	    },
+	    {
+	      "id":3,
+	      "title": "MacBook Pro",
+	      "type": "item"
+	    }
+	  ]
+	},
+	{
+	  "title": "东方航空",
+	  "type": "folder",
+	  "products": [
+	    {
+	      "id":1,
+	      "title": "iPhone",
+	      "type": "item"
+	    },
+	    {
+	      "id":2,
+	      "title": "iMac",
+	      "type": "item"
+	    },
+	    {
+	      "id":3,
+	      "title": "MacBook Pro",
+	      "type": "item"
+	    }
+	  ]
+	},
+	{
+	  "title": "东方航空",
+	  "type": "folder",
+	  "products": [
+	    {
+	      "id":1,
+	      "title": "iPhone",
+	      "type": "item"
+	    },
+	    {
+	      "id":2,
+	      "title": "iMac",
+	      "type": "item"
+	    },
+	    {
+	      "id":3,
+	      "title": "MacBook Pro",
+	      "type": "item"
+	    }
+	  ]
+	},
+	{
+	  "title": "东方航空",
+	  "type": "folder",
+	  "products": [
+	    {
+	      "id":1,
+	      "title": "iPhone",
+	      "type": "item"
+	    },
+	    {
+	      "id":2,
+	      "title": "iMac",
+	      "type": "item"
+	    },
+	    {
+	      "id":3,
+	      "title": "MacBook Pro",
+	      "type": "item"
+	    }
+	  ]
+	},
+	{
+	  "title": "东方航空",
+	  "type": "folder",
+	  "products": [
+	    {
+	      "id":1,
+	      "title": "iPhone",
+	      "type": "item"
+	    },
+	    {
+	      "id":2,
+	      "title": "iMac",
+	      "type": "item"
+	    },
+	    {
+	      "id":3,
+	      "title": "MacBook Pro",
+	      "type": "item"
+	    }
+	  ]
+	},
+	{
+	  "title": "东方航空",
+	  "type": "folder",
+	  "products": [
+	    {
+	      "id":1,
+	      "title": "iPhone",
+	      "type": "item"
+	    },
+	    {
+	      "id":2,
+	      "title": "iMac",
+	      "type": "item"
+	    },
+	    {
+	      "id":3,
+	      "title": "MacBook Pro",
+	      "type": "item"
+	    }
+	  ]
+	}
+   ]
+}]

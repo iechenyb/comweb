@@ -1,0 +1,18 @@
+/* Write your styles */
+td{
+   vertical-align:middle;/*设置垂直居中*/
+}
+body{
+  margin-left:1rem;
+  margin-right:2rem;
+  margin-top:1rem;
+  background-color:#F5F5F5;
+}
+.dhedittreebody{
+	background-color:#F5F5F5;
+	margin:0px;
+}
+.dhtreebody{
+	background-color:#F8F8FF;
+	margin:0px;
+}

@@ -1,0 +1,33 @@
+@media (min-width: 1200px) {
+    .dh-top-img {
+        height: 30rem;
+        width: 100%;
+    }
+    .dh-minheigh{
+        min-height: 25rem;
+    }
+    .dh-over {
+        position: absolute;
+        top: -1rem;
+        bottom: -1rem;
+        left: 50%;
+        width: 16%;
+        margin-left: -8%;
+        border: 1px solid #2e478d;
+        border-width: 1px 0;
+    }
+    .dh-test-body h1 {
+        text-align: center;
+        position: relative;
+        color: #2e478d;
+        margin: 5rem 0;
+    }
+    .am-table>tbody>tr>td, .am-table>tbody>tr>th, .am-table>tfoot>tr>td, .am-table>tfoot>tr>th, .am-table>thead>tr>td, .am-table>thead>tr>th {
+        padding: .7rem;
+        border-top: 1px solid #aaaaaa;
+        line-height: 2;
+    }
+    .am-table-hover>tbody>tr:hover>td, .am-table-hover>tbody>tr:hover>th {
+        background-color: #dae7ef;
+    }
+}
