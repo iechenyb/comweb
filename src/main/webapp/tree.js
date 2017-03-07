@@ -6,7 +6,7 @@ angular.module('app', []).controller('login', function($scope,$http) {
     if(!staticMenu){}else{}
     url1 = $("#path").val()+"menu/getUserMenusTree1.do";
     url2 = $("#path").val()+"restfull/user/userMenu.json";
-    $http.get(url1).success(function(data) {
+    $http.get(url2).success(function(data) {
 	    tdata=data;
 	    if(data.zt==0){
 	    	console.log("系统尚未初始化菜单！");
