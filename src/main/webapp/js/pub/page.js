@@ -73,12 +73,14 @@ function initPageSpilt(data,page){
          * 触发分页后的回调，如果首次加载时后端已处理好分页数据则需要在after中判断终止或在jump中判断first是否为假
          */
         jump: function(context, first) {
-            page.start = (context.option.curr-1)*PAGESIZE+1;
-		    page.end = context.option.curr*PAGESIZE;
-		    page.cur = context.option.curr;
+        	if(first){return;}
 		    //console.log('当前第：' + context.option.curr + "页"+",start="+page.start+",end="+page.end);
 		   try{
-		    page.$apply();
+		    page.$apply(function(){
+	    	    page.start = (context.option.curr-1)*PAGESIZE+1;
+			    page.end = context.option.curr*PAGESIZE;
+			    page.cur = context.option.curr;
+		    });
 		   }catch(e){console.log("the error need not care add by iechenyb!");}
         }
     });
