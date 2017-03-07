@@ -100,9 +100,6 @@ public class LoginFilter implements Filter {
         }
 	}
 	
-	
-	
-	
 	public Map<String,String> check(MyRequestWrapper request) throws IOException{
 		Map<String,String> ret = new HashMap<String, String>();
 		ret.put("has", "0");

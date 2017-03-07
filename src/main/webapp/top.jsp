@@ -64,8 +64,8 @@ $(function(){
 <div class="am-g">
 	<div class="topleft">
 		<!-- <a href="index.jsp" target="_parent"></a> -->
-		<img src="images/logo.png" title="系统首页" /> 
-		东航期货后台管理系统
+		<!-- <img src="images/logo.png" title="系统首页" />  -->
+		后台管理系统
 	</div>
 	<div class="topright">
 	<div>
@@ -83,11 +83,10 @@ $(function(){
 <div class="am-g">
 <script type="text/javascript">
   function exit(obj){
-	 obj.href= '<%=basePath%>
-		' + 'user/exit.do';
+	 obj.href= '<%=basePath%>user/exit.do';
 			obj.target = window.top;
 			obj.click();
-		}
-	</script>
+  }
+</script>
 </body>
 </html>

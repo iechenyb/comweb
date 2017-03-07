@@ -15,9 +15,6 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<listener>
-		<listener-class>com.cyb.web.listener.QHSessionListener</listener-class>
-	</listener>
   <!-- 配置字符集 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

@@ -11,7 +11,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Table(name="t_web_qh_user")
+@Table(name="t_sys_user")
 public class User {
 	/**
 	 * @作者:iechenyb</br>

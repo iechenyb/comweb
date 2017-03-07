@@ -19,14 +19,13 @@
 						http://www.springframework.org/schema/task     
                         http://www.springframework.org/schema/task/spring-task-3.1.xsd"
 						>
-	
-	<context:annotation-config /><!-- 配置事物起作用 -->
+	<context:annotation-config/><!-- 配置事物起作用 -->
 	<task:annotation-driven/> 
 	<context:component-scan base-package="com.cyb.web">
 	   <!-- 父容器  不扫描子容器controller -->
 	   <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
 	</context:component-scan> 
-	<mvc:annotation-driven /> 
+	<mvc:annotation-driven/> 
 	<!-- c3po连接池配置 -->
     <context:property-placeholder location="classpath:app.properties"/>
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> 
@@ -71,27 +70,26 @@
 	        <prop key="hibernate.cache.provider_configuration_file_resource_path">ehcache_hibernate.xml</prop>	       
 	      </props>
       </property>
-		<property name="packagesToScan" >
+		<property name="packagesToScan">
 		  <list> 
-                <value>com.kiiik.webmanager.xtgl.po</value> 
-                <value>com.kiiik.webmanager.xzzx.po</value>
+                <value>com.cyb.web.xtgl.po</value> 
           </list> 
         </property> 
-        <property name="mappingDirectoryLocations">
+        <!-- <property name="mappingDirectoryLocations">
             <list>
                 <value>
-                    <!-- /com/kiiik/webmanager/x/po/*.java  -->
+                    /com/x/po/*.java 
                 </value>
             </list>
         </property>
-     <property name="mappingResources">
-         <list>
-            <value><!--/com/kiiik/webmanager/x/hbm/bean.hbm.xml --></value> 
-        </list>
-    </property>
+	     <property name="mappingResources">
+	         <list>
+	            <value>/com/x/hbm/bean.hbm.xml</value> 
+	        </list>
+	    </property> -->
 	</bean>		
 	    <!-- 开启AOP监听 只对当前配置文件有效 -->
-        <aop:aspectj-autoproxy expose-proxy="true" />
+        <aop:aspectj-autoproxy expose-proxy="true"/>
 
         <!-- 开启注解事务 只对当前配置文件有效 
         <tx:annotation-driven transaction-manager="txManager" />

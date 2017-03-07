@@ -11,7 +11,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Table(name="t_web_qh_role_menu")
+@Table(name="t_sys_role_menu")
 public class RoleMenu {
 	/**
 	 * @作者:iechenyb</br>

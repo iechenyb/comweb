@@ -1,0 +1,40 @@
+[
+  {
+    "children": [
+     {
+        "children": [
+         {
+            "text": "新增角色",
+            "id":"2",
+            "isleaf":1,
+            "url":"qhweb/xtgl/role/editRole.jsp"
+          },{
+            "text": "新增用户",
+            "id":"2",
+            "isleaf":1,
+            "url":"qhweb/xtgl/user/editUser.jsp"
+          },{
+            "text": "新增菜单",
+            "id":"2",
+            "isleaf":1,
+            "url":"qhweb/xtgl/menu/menuMain.jsp"
+          },{
+            "text": "角色分配",
+            "id":"2",
+            "isleaf":1,
+            "url":"qhweb/xtgl/user/assignRole.jsp"
+          },{
+            "text": "权限分配",
+            "id":"2",
+            "isleaf":1,
+            "url":"qhweb/xtgl/menu/assignMenu.jsp"
+          }
+        ],
+        "isleaf":0,
+        "text": "系统管理"
+      }
+    ],
+    "isleaf":0,
+    "text": "系统菜单"
+  }
+]

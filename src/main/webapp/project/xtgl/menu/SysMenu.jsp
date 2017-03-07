@@ -56,7 +56,7 @@
             </ul>
         </div>
 </div>
-<a href='#' id='page' target='rightFramemenu'></a>
+<a href='#' id='page' target='rightFramemenucyb'></a>
 <script src="<%=basePath%>amazeui/js/jquery.min.js"></script>
 <script src="<%=basePath%>angular/angular-1.0.1.min.js"></script>
 <script src="<%=basePath%>cdn/amazeui.tree.js"></script>

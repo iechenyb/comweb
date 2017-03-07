@@ -26,18 +26,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="东航期货" />
 <link rel="stylesheet" href="<%=basePath%>amazeui/css/amazeui.min.css">
-<link href="../css/dh.css" rel="stylesheet">
-<link href="../css/loading.css" rel="stylesheet">
+<link href="../css/dh1.css" rel="stylesheet">
+<link href="../css/loading1.css" rel="stylesheet">
 </head>
 <body ng-controller="login">
 	<form class="am-form am-text-center ng-pristine ng-valid" style="overflow:hidden;">
-		<img src="../image/bg.png" class="dh-bg"
-			style="width: 100%; height: 100vh; z-index: -1;margin:0px;padding:0px;">
-		<div ui-view
+		<div
 			style="position: absolute; top: 10rem; left: 35%; width: 30%;">
 			<center>
-				<img src="../image/logo.png" class="dh-bg" 	style="z-index: 5"/>
-				<h1>东航期货网站后台管理系统</h1>
+			    <h1>管理员登录</h1>
 				<fieldset>
 					<div class="am-form-group">
 						<input type="text" class="" id="name" ng-model="user.username"

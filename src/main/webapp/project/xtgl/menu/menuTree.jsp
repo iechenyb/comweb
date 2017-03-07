@@ -25,7 +25,7 @@ String basePath = "http://" + request.getServerName() + ":" + request.getServerP
         	onSelect: function(node){
                  toPage(node.data);
             },
-            url: '<%=basePath%>menu/getMenuTree.do',
+            url: '<%=basePath%>menu.json',//menu/getMenuTree.do
             ajaxType: 'get',
             nodeWidth : 100,
             onBeforeExpand: onBeforeExpand,
@@ -52,7 +52,7 @@ String basePath = "http://" + request.getServerName() + ":" + request.getServerP
     function toPage(node){
      console.log(node);
      if(node.isleaf==0){	
-	   	 $('#page').attr("href",path+"qhweb/xtgl/menu/editMenu.jsp?pid="+node.id+"&pname="+node.text);
+	   	 $('#page').attr("href",path+"project/xtgl/menu/editMenu.jsp?pid="+node.id+"&pname="+node.text);
 	   	 document.getElementById("page").click();
    	 }else{
    		 alert('叶子节点不能添加子节点，请点击上级菜单进行修改！');

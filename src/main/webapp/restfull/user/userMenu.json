@@ -1,0 +1,67 @@
+[
+  {
+    "title": "系统管理",
+    "pid": "menuroot",
+    "isleaf": 0,
+    "type": "folder",
+    "id": "cda966f1-98c4-4519-a502-f303b1e5b049",
+    "url": null,
+    "products": [
+      {
+        "title": "新增用户",
+        "pid": "cda966f1-98c4-4519-a502-f303b1e5b049",
+        "id": "db719344-4ad3-4236-aa13-22a510503edd",
+        "url": "project/xtgl/user/editUser.jsp",
+        "isleaf": 1,
+        "type": "item",
+        "products": [
+          
+        ]
+      },
+      {
+        "title": "新增角色",
+        "pid": "cda966f1-98c4-4519-a502-f303b1e5b049",
+        "id": "3977e081-63cf-4383-aecc-b8d305b4a651",
+        "url": "project/xtgl/role/editRole.jsp",
+        "isleaf": 1,
+        "type": "item",
+        "products": [
+          
+        ]
+      },
+      {
+        "title": "角色分配",
+        "pid": "cda966f1-98c4-4519-a502-f303b1e5b049",
+        "id": "be72fb35-dbb6-4e49-ab52-dbef925d405b",
+        "url": "project/xtgl/user/assignRole.jsp",
+        "isleaf": 1,
+        "type": "item",
+        "products": [
+          
+        ]
+      },
+      {
+        "title": "新增菜单",
+        "pid": "cda966f1-98c4-4519-a502-f303b1e5b049",
+        "id": "3ae69f2c-7473-44ce-9fa3-d913b6017d7f",
+        "url": "project/xtgl/menu/menuMain.jsp",
+        "isleaf": 1,
+        "type": "item",
+        "products": [
+          
+        ]
+      },
+      {
+        "title": "权限分配",
+        "pid": "cda966f1-98c4-4519-a502-f303b1e5b049",
+        "id": "2cbb9de2-5504-440d-9cef-ef44f288ff6a",
+        "url": "project/xtgl/menu/assignMenu.jsp",
+        "isleaf": 1,
+        "type": "item",
+        "products": [
+          
+        ]
+      }
+    ]
+  }
+]

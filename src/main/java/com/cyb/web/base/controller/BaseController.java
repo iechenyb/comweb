@@ -74,7 +74,8 @@ public class BaseController {
         }else{
         	setMsgMap(FAILURE, "上传失败");
         }
-        log.info(e.toString());
+        log.info("异常！"+e.toString());
+        e.printStackTrace();
         return msgMap;
     }
 }

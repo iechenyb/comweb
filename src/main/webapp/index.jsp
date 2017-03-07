@@ -10,13 +10,13 @@ String basePath = "http://" + request.getServerName() + ":" + request.getServerP
 <link rel="icon" type="image/png" href="<%=basePath%>image/favicon.ico">
 <title>信息管理系统界面</title>
 </head>
-<frameset rows="9%,*,6%" cols="*" frameborder="no" border="0" framespacing="0">
+<frameset rows="9%,*" cols="*" frameborder="no" border="0" framespacing="0">
   <frame src="top.jsp" name="topFrame" scrolling="yes" noresize="noresize" id="topFrame" title="topFrame" />
   <frameset cols="15%,*" frameborder="no" border="0" framespacing="0">
     <frame src="UserMenu.jsp" name="leftFrame" scrolling="yes" noresize="noresize" id="leftFrame" title="leftFrame" />
-    <frame src="welcome.jsp" name="rightFrame" id="rightFrame" title="rightFrame" />
+    <frame src="" name="rightFrame" id="rightFrame" title="rightFrame" />
   </frameset>
-  <frame src="footer.jsp" name="topFrame" scrolling="yes" noresize="noresize" id="topFrame" title="topFrame" />
+   <!-- <frame src="footer.jsp" name="topFrame" scrolling="yes" noresize="noresize" id="topFrame" title="topFrame" /> -->
 </frameset>
 <noframes>
 <body>

@@ -12,7 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Table(name="t_web_qh_user_role")
+@Table(name="t_sys_user_role")
 public class UserRole {
 	/**
 	 * @作者:iechenyb</br>
