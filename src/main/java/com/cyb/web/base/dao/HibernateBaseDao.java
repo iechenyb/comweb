@@ -2,6 +2,8 @@ package com.cyb.web.base.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -12,6 +14,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import com.cyb.web.xtgl.po.Menu;
 @Component("baseDao")
 public class HibernateBaseDao<T> {
 	@Resource(name="jdbcTemplate")
@@ -98,6 +102,17 @@ public class HibernateBaseDao<T> {
 		}
 		return entity;
 	 }
+	@SuppressWarnings("unchecked")
+	public List<T> getAll(){
+		Object obj = this.getSession()
+				.createQuery("from "+clazz.getSimpleName()+" order by id")
+				.setCacheable(true).list();
+		if(obj!=null){
+			return (List<T>)obj;
+		}else{
+			return new ArrayList<T>();
+		}
+	}
 	public void evict(Object t){
 	   this.getSession().merge(t);
 	   this.getSession().evict(t);

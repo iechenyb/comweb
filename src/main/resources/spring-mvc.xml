@@ -8,7 +8,7 @@
 	xmlns:oxm="http://www.springframework.org/schema/oxm" 
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc  
-                http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd  
+                http://www.springframework.org/schema/mvc/spring-mvc.xsd  
                 http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans.xsd  
                 http://www.springframework.org/schema/tx
@@ -70,4 +70,23 @@
 			</props>
 		</property>
 	</bean>
+	     	<!-- 拦截器 -->
+<mvc:resources mapping="/css/**" location="/css/"/>
+<mvc:resources mapping="/images/**" location="/img/"/>
+<mvc:resources mapping="/js/**" location="/js/"/>
+<!-- <servlet-mapping>  
+   <servlet-name>default</servlet-name>  
+   <url-pattern>/js/*</url-pattern>  
+   <url-pattern>*.css</url-pattern>  
+   <url-pattern>/images/*</url-pattern>  
+ </servlet-mapping> -->
+<mvc:interceptors>  
+    <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->  
+ <bean class="com.cyb.inteceptor.AllInterceptor"/> 
+    <mvc:interceptor>  
+        <mvc:mapping path="/user/login.do"/>  
+        <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->  
+        <bean class="com.cyb.inteceptor.LoginInterceptor"/>  
+    </mvc:interceptor>  
+</mvc:interceptors> 
 </beans>
