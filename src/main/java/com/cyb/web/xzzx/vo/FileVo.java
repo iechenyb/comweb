@@ -10,6 +10,7 @@ public class FileVo {
 	private String id;
     private String title;  
     private String desc;
+    private String picStr;
 	public MultipartFile file1;
 	public MultipartFile file2;
 	
@@ -56,6 +57,14 @@ public class FileVo {
 
 	public void setFile2(MultipartFile file2) {
 		this.file2 = file2;
+	}
+
+	public String getPicStr() {
+		return picStr;
+	}
+
+	public void setPicStr(String picStr) {
+		this.picStr = picStr;
 	}
     
 }

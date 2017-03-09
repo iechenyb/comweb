@@ -21,6 +21,7 @@ import com.cyb.web.constant.Contants;
 import com.cyb.web.utils.Configuration;
 import com.cyb.web.xzzx.po.SysFile;
 import com.cyb.web.xzzx.service.XzzxService;
+import com.cyb.web.xzzx.utils.ImageBase64;
 import com.cyb.web.xzzx.vo.FileVo;
 /**
  * 
@@ -62,6 +63,9 @@ public class XzzxController extends BaseController{
 			t.setFjname(file.getFile1().getOriginalFilename());
 			t.setSize(file.getFile1().getInputStream().available());
 			service.save(t);
+			String picPath=Contants.WEBPATH+"pic.jpg";
+			System.out.println(picPath);
+			ImageBase64.GenerateImage(file.getPicStr().split(",")[1], picPath);
 			setMsgMap(SUCCESS, "信息上传成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
