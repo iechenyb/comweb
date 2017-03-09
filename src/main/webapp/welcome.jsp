@@ -37,7 +37,7 @@
 			style="position: absolute; top: 10rem; left: 35%; width: 30%;">
 			<center>
 				<img src="image/logo.png" class="dh-bg" style="z-index: 5"/>
-				<div style="padding-top:100px;"><font size=25><b>东航期货后台管理系统</b></font></div>
+				<div style="padding-top:100px;"><font size=25><b>后台管理系统</b></font></div>
 				<div style="padding-top:30px;"><font size=20>欢迎你，<%=name%>!</font></div>
 			</center>
 		</div>

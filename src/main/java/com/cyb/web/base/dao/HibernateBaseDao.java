@@ -113,6 +113,17 @@ public class HibernateBaseDao<T> {
 			return new ArrayList<T>();
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public List<T> getAll(String entityName){
+		Object obj = this.getSession()
+				.createQuery("from "+entityName+" order by id")
+				.setCacheable(true).list();
+		if(obj!=null){
+			return (List<T>)obj;
+		}else{
+			return new ArrayList<T>();
+		}
+	}
 	public void evict(Object t){
 	   this.getSession().merge(t);
 	   this.getSession().evict(t);

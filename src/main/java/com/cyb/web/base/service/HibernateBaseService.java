@@ -51,7 +51,12 @@ public class HibernateBaseService<T> {
 	public Object get(String id){
 		return baseDao.get(clazz, id);
 	}
-	
+	public Object getAll(){
+		return baseDao.getAll();
+	}
+	public Object getAll(String entityName){
+		return baseDao.getAll(entityName);
+	}
 	public Object load(String id){
 		return baseDao.load(clazz, id);
 	}

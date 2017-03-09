@@ -8,6 +8,7 @@ function main($scope,$q,$http){
 	 page.user = {};
 	 page.user.username="zhangsan";
 	 page.user.password="111111";
+	 path = $('#path').val();
 	 document.onkeydown = function(e){ 
         var ev = document.all ? window.event : e;
         if(ev.keyCode==13) {
@@ -16,10 +17,11 @@ function main($scope,$q,$http){
 	     }
 	};
 }
+var path;
 function login(){
 	$('#tip').html("<font>登录信息校验中,请稍候...</font>");
 	$.ajax({
-		 url:"../user/login.do?username="+page.user.username+"&password="+page.user.password,
+		 url:path+"user/login.do?username="+page.user.username+"&password="+page.user.password,
 		 contentType: "application/json",
 		 async:true,
 		 dataType:'json',

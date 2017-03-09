@@ -152,11 +152,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search</artifactId>
 			<version>${hibernate-search.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- jdbc driver -->
 		<dependency>

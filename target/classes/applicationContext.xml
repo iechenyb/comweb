@@ -73,6 +73,7 @@
 		<property name="packagesToScan">
 		  <list> 
                 <value>com.cyb.web.xtgl.po</value> 
+                <value>com.cyb.web.xzzx.po</value> 
                 <value>com.cyb.web.sw.po</value> 
           </list> 
         </property> 

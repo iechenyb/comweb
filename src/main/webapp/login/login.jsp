@@ -2,10 +2,9 @@
 	contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+			+  request.getContextPath()+ "/";
 %>
 <!DOCTYPE html>
 <html ng-app="app">
@@ -24,13 +23,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="东航期货" />
+<meta name="apple-mobile-web-app-title" content="" />
 <link rel="stylesheet" href="<%=basePath%>amazeui/css/amazeui.min.css">
-<link href="../css/dh1.css" rel="stylesheet">
-<link href="../css/loading1.css" rel="stylesheet">
+<link href="<%=basePath%>css/dh.css" rel="stylesheet">
+<link href="<%=basePath%>css/loading.css" rel="stylesheet">
 </head>
 <body ng-controller="login">
 	<form class="am-form am-text-center ng-pristine ng-valid" style="overflow:hidden;">
+	<input type="hidden" class="" value='<%=basePath%>' id="path" >
 		<div
 			style="position: absolute; top: 10rem; left: 35%; width: 30%;">
 			<center>

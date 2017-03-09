@@ -1,5 +1,7 @@
 package com.cyb.web.sw.controller;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import net.sf.json.JSONArray;
@@ -8,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cyb.web.base.controller.BaseController;
 import com.cyb.web.sw.po.Sw;
 import com.cyb.web.sw.service.SwService;
 
 @Controller
 @RequestMapping("sw")
-public class SwController {
+public class SwController extends BaseController{
 	@Resource(name="swService")
 	SwService swService;
 	@RequestMapping("add")
@@ -40,13 +43,16 @@ public class SwController {
 	}
 	@RequestMapping("testSw")
 	@ResponseBody
-	public JSONArray updateSw(String ex){
+	public Map<String, Object> updateSw(String ex){
 		try{
 			swService.updateSw(ex);
+			setMsgMap(SUCCESS, "转账成功！");
+			msgMap.put("data", swService.getList());
 		}catch(Exception e){
 			e.printStackTrace();
-			return JSONArray.fromObject(swService.getList());
+			setMsgMap(FAILURE, "转账异常！");
+			return msgMap;
 		}
-		return JSONArray.fromObject(swService.getList());
+		return msgMap;
 	}
 }

@@ -42,10 +42,10 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
+	<!-- <servlet-mapping>
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>*.html</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -83,14 +83,26 @@
 	</error-page>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/exception/404.html</location>
+		<location>/exception/404.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/exception/500.html</location>
+		<location>/exception/500.jsp</location>
 	</error-page>
 	<error-page>
 		<exception-type>org.hibernate.ObjectNotFoundException</exception-type>
-		<location>/exception/404.html</location>
+		<location>/exception/404.jsp</location>
 	</error-page>
+<servlet-mapping>  
+   <servlet-name>default</servlet-name>  
+   <url-pattern>*.js</url-pattern>  
+   <url-pattern>*.css</url-pattern>  
+   <url-pattern>*.jpg</url-pattern>  
+   <url-pattern>*.png</url-pattern> 
+   <url-pattern>*.gif</url-pattern> 
+   <url-pattern>*.ttf</url-pattern> 
+   <url-pattern>*.woff2</url-pattern> 
+   <url-pattern>*.swf</url-pattern> 
+   <url-pattern>*.html</url-pattern> 
+ </servlet-mapping>
 </web-app>

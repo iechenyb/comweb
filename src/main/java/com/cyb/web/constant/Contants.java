@@ -11,7 +11,6 @@ public class Contants {
 	public static String WEBPATH = "";
 	public static String SSEIONUSERKEY = "user";
 	public static String DEFAULTPASSWORD = "111111";
-	public static Map<String,String> WJLX;
 
 	static {
 		//性别0 男 1女 其他 未知	

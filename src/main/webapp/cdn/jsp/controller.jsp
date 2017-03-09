@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="com.kiiik.webmanager.utils.ActionEnter"
+	import="com.cyb.web.utils.ActionEnter"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%

@@ -2,21 +2,26 @@ package com.cyb.web.xzzx.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cyb.date.DateUtil;
 import com.cyb.web.base.controller.BaseController;
 import com.cyb.web.constant.Contants;
 import com.cyb.web.utils.Configuration;
+import com.cyb.web.xzzx.po.SysFile;
 import com.cyb.web.xzzx.service.XzzxService;
-import com.cyb.web.xzzx.vo.QHFileVo;
+import com.cyb.web.xzzx.vo.FileVo;
 /**
  * 
  * 功能描述：下载中心管理
@@ -33,6 +38,11 @@ public class XzzxController extends BaseController{
 	 */
 	@Resource(name = "xzzxService")
 	XzzxService service;
+	@ResponseBody
+	@RequestMapping("list")
+	public JSONArray list(FileVo file) {
+		return JSONArray.fromObject(service.getAll("SysFile"));
+	}
     /**
      * 
      * 作者:iechenyb</br>
@@ -43,10 +53,19 @@ public class XzzxController extends BaseController{
      */
 	@ResponseBody
 	@RequestMapping("upload")
-	public Map<String, Object> uploadFile(QHFileVo file) {
-		try {} catch (Exception e) {
+	public Map<String, Object> uploadFile(FileVo file) {
+		try {
+			SysFile t = new SysFile();
+			t.setContent(file.getDesc());
+			t.setTitle(file.getTitle());
+			t.setTime(DateUtil.date2long8(new Date()).toString());
+			t.setFjname(file.getFile1().getOriginalFilename());
+			t.setSize(file.getFile1().getInputStream().available());
+			service.save(t);
+			setMsgMap(SUCCESS, "信息上传成功！");
+		} catch (Exception e) {
 			e.printStackTrace();
-			setMsgMap(FAILURE, "文件信息上传失败！");
+			setMsgMap(FAILURE, "信息上传失败！");
 		}
 		return msgMap;
 	}
@@ -59,7 +78,7 @@ public class XzzxController extends BaseController{
 	 */	
 	@ResponseBody
 	@RequestMapping("updFile")
-	public Map<String, Object> updFile(QHFileVo file) {
+	public Map<String, Object> updFile(FileVo file) {
 		try {
 			
 		} catch (Exception e) {

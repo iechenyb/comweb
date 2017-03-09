@@ -5,6 +5,8 @@ import javax.servlet.ServletContextListener;
 
 import com.cyb.h2.H2Manager;
 import com.cyb.web.constant.Contants;
+import com.cyb.web.search.utils.LuceneMemIndexIK;
+import com.cyb.web.search.utils.LuceneMemIndexStandard;
 import com.cyb.web.utils.Configuration;
 /**
  * 
@@ -21,6 +23,8 @@ public class WebListener implements ServletContextListener {
     	Contants.WEBPATH = sce.getServletContext().getRealPath("/");
     	try {
 			Configuration.initConfig("config");
+			LuceneMemIndexIK.createIndex();
+			LuceneMemIndexStandard.createIndex();
 			H2Manager.start();
 		} catch (Exception e) {
 			e.printStackTrace();

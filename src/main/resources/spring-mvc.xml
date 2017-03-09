@@ -70,10 +70,12 @@
 			</props>
 		</property>
 	</bean>
-	     	<!-- 拦截器 -->
-<mvc:resources mapping="/css/**" location="/css/"/>
-<mvc:resources mapping="/images/**" location="/img/"/>
-<mvc:resources mapping="/js/**" location="/js/"/>
+<!-- 拦截器 -->
+<!-- <mvc:resources mapping="/css/**" location="/css/"/>
+<mvc:resources mapping="/image/**" location="/image/"/>
+<mvc:resources mapping="/upload/**" location="/upload/"/>
+<mvc:resources mapping="/images/**" location="/images/"/>
+<mvc:resources mapping="/js/**" location="/js/"/> -->
 <!-- <servlet-mapping>  
    <servlet-name>default</servlet-name>  
    <url-pattern>/js/*</url-pattern>  
