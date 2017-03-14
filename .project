@@ -3,6 +3,7 @@
 	<name>comWeb</name>
 	<comment></comment>
 	<projects>
+		<project>com.cyb.helloworld</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
