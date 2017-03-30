@@ -1,6 +1,5 @@
 package com.cyb.web.search.controller;
 
-import java.io.IOException;
 import java.io.StringReader;
 
 import net.sf.json.JSONArray;

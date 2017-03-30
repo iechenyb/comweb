@@ -16,7 +16,9 @@ import com.cyb.web.xss.service.XssService;
 	SELECT * FROM users WHERE name = 'a';DROP TABLE users;SELECT * FROM DATA WHERE name LIKE '%';
 	SELECT * FROM DATA WHERE id = 1;DROP TABLE users; 
  * @author DHUser
- *
+ * http://localhost:8088/web/xss/query.do?name=chenyb1' or 1 = '1 &type=jdbc
+ * name=chenyb1' or 1 = '1
+ * name=chenyb';delete * from t_sys_customer where name='chenyb1
  */
 @Controller
 @RequestMapping("xss")
