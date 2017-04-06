@@ -90,4 +90,14 @@ public class FileUtils {
 				e.printStackTrace();
 			}  
 	    }
+		public static String getAbsolutePathAtMavenClass(Class<?> clss){
+	    	String packagePath = System.getProperty("user.dir");
+	    	String packageName = clss.getPackage().getName().replaceAll("\\.", "/");
+	    	return packagePath+"/src/main/java/"+packageName+"/";
+	    }
+		public static String getAbsolutePathAtClass(Class<?> clss){
+	    	String packagePath = System.getProperty("user.dir");
+	    	String packageName = clss.getPackage().getName().replaceAll("\\.", "/");
+	    	return packagePath+"/src/"+packageName+"/";
+	    }
 }

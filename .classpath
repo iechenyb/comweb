@@ -38,5 +38,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lucene-queryparser-4.7.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/iechenyb.jar"/>
 	<classpathentry kind="src" path="/com.cyb.helloworld"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/freemarker-2.3.23.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

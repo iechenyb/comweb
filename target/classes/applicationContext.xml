@@ -75,6 +75,7 @@
                 <value>com.cyb.web.xtgl.po</value> 
                 <value>com.cyb.web.xzzx.po</value> 
                 <value>com.cyb.web.sw.po</value> 
+                 <value>com.cyb.web.xss.po</value> 
           </list> 
         </property> 
         <!-- <property name="mappingDirectoryLocations">
