@@ -1,4 +1,7 @@
-package com.cyb.freemarker.mvc.po;  
+package com.cyb.web.mvc.po;  
+   
+ import java.util.ArrayList;  
+ import java.util.List;  
    
  public class User {  
    

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.cyb.web.base.controller.BaseController;
-import ${servicePackageName}
+import ${servicePackageName};
 /**
  *  @author ${author}
     @date ${date}

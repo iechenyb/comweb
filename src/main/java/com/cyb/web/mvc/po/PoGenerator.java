@@ -1,4 +1,4 @@
-package com.cyb.freemarker.mvc.po;
+package com.cyb.web.mvc.po;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cyb.date.DateUtil;
-import com.cyb.file.FileUtils;
+import com.cyb.web.utils.FileUtils;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -35,10 +35,10 @@ public class PoGenerator {
 
     public void gen() throws IOException, TemplateException{
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
-        cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtClass(PoGenerator.class)));   
+        cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtMavenClass(PoGenerator.class)));   
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        Template temp = cfg.getTemplate("controller.ftl");  // load E:/Work/Freemarker/templates/person.ftl
+        Template temp = cfg.getTemplate("po.ftl");  // load E:/Work/Freemarker/templates/person.ftl
         Map<String, Object> root = new HashMap<String, Object>();
         root.put("packageName", "com.cyb.mvc.controller");
         root.put("modelName", "Test");
@@ -46,7 +46,7 @@ public class PoGenerator {
         root.put("author", "iechenyb");
         root.put("basePath", "restfull/test");
         root.put("date", DateUtil.timeToSec(new Date()).toString());
-        File dir = new File( FileUtils.getAbsolutePathAtClass(PoGenerator.class));
+        File dir = new File( FileUtils.getAbsolutePathAtMavenClass(PoGenerator.class));
         if(!dir.exists()){
             dir.mkdirs();
         }

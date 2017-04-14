@@ -8,9 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.cyb.web.base.controller.BaseController;
+import com.cyb.web.mvc.service.TestService;
 /**
  *  @author iechenyb
-    @date 2017-04-06 13:04:52
+    @date 2017-04-10 09:53:49
  */
 @Controller
 @RequestMapping("restfull/test")

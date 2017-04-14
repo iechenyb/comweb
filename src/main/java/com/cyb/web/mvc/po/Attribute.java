@@ -1,4 +1,4 @@
-package com.cyb.freemarker.mvc.po;
+package com.cyb.web.mvc.po;
 
 public class Attribute {
 	private String name;  

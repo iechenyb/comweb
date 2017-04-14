@@ -1,4 +1,4 @@
-package com.cyb.freemarker.mvc.po;
+package com.cyb.web.mvc.po;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.cyb.file.FileUtils;
+
+
+import com.cyb.web.utils.FileUtils;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -32,8 +34,8 @@ public class BeanByCreateMain {
         // load资源的实例创建  
         ploader = new Properties();  
         cfg.setDirectoryForTemplateLoading(new File(  
-                FileUtils.getAbsolutePathAtClass(BeanByCreateMain.class)));  
-        String path = FileUtils.getAbsolutePathAtClass(BeanByCreateMain.class);
+                FileUtils.getAbsolutePathAtMavenClass(BeanByCreateMain.class)));  
+        String path = FileUtils.getAbsolutePathAtMavenClass(BeanByCreateMain.class);
         ploader.load(new FileInputStream(path+"bean.properties"));  
         //ploader.load(new FileInputStream("E:\\Workspaces\\workspace\\javabean_complier\\src\\bean.properties"));  
     }  
@@ -91,7 +93,7 @@ public class BeanByCreateMain {
     public void write(Map<String, Object> root) throws IOException, TemplateException{  
         Template t = cfg.getTemplate(TEMPLATE_NAME);  
         OutputStream out = new FileOutputStream(  
-                new File(FileUtils.getAbsolutePathAtClass(BeanByCreateMain.class)+ploader.getProperty("classname")+".java"));  
+                new File(FileUtils.getAbsolutePathAtMavenClass(BeanByCreateMain.class)+ploader.getProperty("classname")+".java"));  
         t.process(root, new OutputStreamWriter(out));  
     }  
 }

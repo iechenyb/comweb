@@ -42,7 +42,7 @@ public class ControllerGenerator {
         Template temp = cfg.getTemplate("controller.ftl");  // load E:/Work/Freemarker/templates/person.ftl
         Map<String, Object> root = new HashMap<String, Object>();
         root.put("packageName", "com.cyb.web.mvc.controller");
-        root.put("servicePackageName", "com.cyb.mvc.freemarker.service");
+        root.put("servicePackageName", "com.cyb.web.mvc.service.TestService");
         root.put("modelName", "Test");
         root.put("varModelName", "test");
         root.put("author", "iechenyb");
