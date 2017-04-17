@@ -27,7 +27,7 @@
 	</context:component-scan> 
 	<mvc:annotation-driven/> 
 	<!-- c3po连接池配置 -->
-    <context:property-placeholder location="classpath:app.properties"/>
+    <context:property-placeholder location="classpath:db.properties"/>
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> 
 	      <property name="driverClassName" value="${connection.mysql.driverclassname}" />      
 	      <property name="url" value="${connection.mysql.url}" />
