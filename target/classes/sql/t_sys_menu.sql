@@ -1,0 +1,15 @@
+INSERT INTO `t_sys_menu` VALUES ('15e62992-ce1c-4e36-8bea-2b8a9a8e6d26', 0, NULL, 0, '1', '文件管理', NULL, 0, 2, 'menuroot', NULL);
+INSERT INTO `t_sys_menu` VALUES ('219c1112-b9ca-47d8-8898-b4da50a3b259', 0, NULL, 1, NULL, '发送邮件', NULL, 0, 1, '3350c7dd-4872-404d-af09-e9d6461d639f', 'project/mail/sendMail.jsp');
+INSERT INTO `t_sys_menu` VALUES ('2ea49c49-564e-4874-9511-fed8cab83dd7', 0, NULL, 0, NULL, '事务管理', NULL, 0, 5, 'menuroot', '');
+INSERT INTO `t_sys_menu` VALUES ('3350c7dd-4872-404d-af09-e9d6461d639f', 0, NULL, 0, NULL, '邮件管理', NULL, 0, 4, 'menuroot', NULL);
+INSERT INTO `t_sys_menu` VALUES ('481cab50-c6e4-48c1-858c-a0365adb7346', 0, NULL, 1, NULL, '文件上传', NULL, 0, 1, '15e62992-ce1c-4e36-8bea-2b8a9a8e6d26', 'project/xzzx/uploadFile.jsp');
+INSERT INTO `t_sys_menu` VALUES ('55924c70-19ca-42cf-a74b-3f24c828c2f2', 0, NULL, 1, '234', '角色分配', NULL, 0, 3, 'b5b1cd34-61e7-4aeb-b9ad-c987e1f70348', 'project/xtgl/user/assignRole.jsp');
+INSERT INTO `t_sys_menu` VALUES ('5d3ac884-7f27-4f70-bae1-152522c03eff', 0, NULL, 0, NULL, 'IK分词', NULL, 0, 3, 'menuroot', NULL);
+INSERT INTO `t_sys_menu` VALUES ('675e0f2b-3f44-4fa1-be7e-fbec5fce63c9', 0, NULL, 1, '12', '用户管理', NULL, 0, 1, 'b5b1cd34-61e7-4aeb-b9ad-c987e1f70348', 'project/xtgl/user/editUser.jsp');
+INSERT INTO `t_sys_menu` VALUES ('977384de-816f-44b6-8885-aa3e306b96ff', 0, NULL, 1, NULL, '文件列表', NULL, 0, 2, '15e62992-ce1c-4e36-8bea-2b8a9a8e6d26', 'project/xzzx/fileList.jsp');
+INSERT INTO `t_sys_menu` VALUES ('9798149d-d4c5-4d61-b4e9-644d1ca7e404', 0, NULL, 1, '324', '角色管理', NULL, 0, 2, 'b5b1cd34-61e7-4aeb-b9ad-c987e1f70348', 'project/xtgl/role/editRole.jsp');
+INSERT INTO `t_sys_menu` VALUES ('a5011f36-176d-4a95-b6dc-42f7aee62a09', 0, NULL, 1, '234', '权限分配', NULL, 0, 6, 'b5b1cd34-61e7-4aeb-b9ad-c987e1f70348', 'project/xtgl/menu/assignMenu.jsp');
+INSERT INTO `t_sys_menu` VALUES ('ac3e8b82-6c84-44d7-8c21-bb80e32f2d72', 0, NULL, 1, '234', '菜单管理', NULL, 0, 4, 'b5b1cd34-61e7-4aeb-b9ad-c987e1f70348', 'project/xtgl/menu/menuMain.jsp');
+INSERT INTO `t_sys_menu` VALUES ('b5b1cd34-61e7-4aeb-b9ad-c987e1f70348', 0, NULL, 0, '1', '水电费', NULL, 0, 1, 'menuroot', NULL);
+INSERT INTO `t_sys_menu` VALUES ('cc97e0df-9ca2-43c4-a4fc-cd10d0c27d9c', 0, NULL, 1, NULL, '智能搜索', NULL, 0, 1, '5d3ac884-7f27-4f70-bae1-152522c03eff', 'project/search/listNews.jsp');
+INSERT INTO `t_sys_menu` VALUES ('d48c9902-ca10-4cb8-9e54-ae5355e52709', 0, NULL, 1, NULL, '事务管理', NULL, 0, 1, '2ea49c49-564e-4874-9511-fed8cab83dd7', '/project/sw/index.jsp');
