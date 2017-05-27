@@ -13,19 +13,19 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.cyb.web.sw.service.SwService;
-//目录不对，不执行
+//目录不对，不执行 
 @Component
 public class TestJob {
 	Log log = LogFactory.getLog(TestJob.class);
 	@Resource(name = "swService")
 	SwService swService;
 
-	@Scheduled(cron = "0 * * * * ?")
+	@Scheduled(cron = "0/5 * * * * ?")
 	public void method1() {
-		com();
+		log.info("xxx");
 	}
 	
-	@Scheduled(cron = "0 * * * * ?")
+	/*@Scheduled(cron = "0 * * * * ?")
 	public void method2() {
       com();
 	}
@@ -50,6 +50,6 @@ public class TestJob {
 	        } catch (ExecutionException e) {
 	            e.printStackTrace();
 	        }
-	}
+	}*/
 	
 }

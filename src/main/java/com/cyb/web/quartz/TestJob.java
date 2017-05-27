@@ -20,7 +20,7 @@ public class TestJob {
 	@Resource(name = "swService")
 	SwService swService;
 
-	@Scheduled(cron = "00 59 * * * ?")
+	@Scheduled(cron = "0 0 * * * ?")
 	public void method() {
 		log.info("测试定时任务执行！使用springbean servece is " + swService);
 	}

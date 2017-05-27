@@ -47,7 +47,8 @@ public class LoginFilter implements Filter {
         String path = req.getContextPath();  
         String basePath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+path;  
         Object user = req.getSession(true).getAttribute(Contants.SSEIONUSERKEY);
-        if(req.getRequestURI().contains("login/login.jsp")
+        if(req.getRequestURI().contains("job")
+        		||req.getRequestURI().contains("login/login.jsp")
         		||req.getRequestURI().contains("user/login.do")
         		||req.getRequestURI().contains("user/exit.do")
         		||req.getRequestURI().contains("jsp/controller.jsp")//ueditor的请求不进行过滤

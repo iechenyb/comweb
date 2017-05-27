@@ -12,8 +12,8 @@ import org.quartz.Trigger;
  * 
  */
 public class QuartzManager {
-    private static String JOB_GROUP_NAME = "EXTJWEB_JOBGROUP_NAME";
-    private static String TRIGGER_GROUP_NAME = "EXTJWEB_TRIGGERGROUP_NAME";
+    private static String JOB_GROUP_NAME = Scheduler.DEFAULT_GROUP;
+    private static String TRIGGER_GROUP_NAME = Scheduler.DEFAULT_GROUP;
 
     /**
      * @Description: 添加一个定时任务，使用默认的任务组名，触发器名，触发器组名
