@@ -28,6 +28,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.cyb.web.constant.Contants;
+import com.cyb.web.utils.BaseConfiguration;
 import com.cyb.web.utils.Configuration;
 import com.cyb.web.utils.EncodeUtils;
 import com.cyb.web.utils.InjectionPatterns;
@@ -40,6 +41,7 @@ public class LoginFilter implements Filter {
 	public void destroy() {
 	}
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		if(Boolean.valueOf(BaseConfiguration.get("useLoginFileter"))){
 		request.setCharacterEncoding("utf-8");
 		MyRequestWrapper req = new MyRequestWrapper((HttpServletRequest) request);
 		//HttpServletRequest req = (HttpServletRequest)request;
@@ -99,6 +101,9 @@ public class LoginFilter implements Filter {
 	        	}
 			}
         }
+		}else{
+			chain.doFilter(request, response);
+		}
 	}
 	
 	public Map<String,String> check(MyRequestWrapper request) throws IOException{

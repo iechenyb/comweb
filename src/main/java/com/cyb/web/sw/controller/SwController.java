@@ -25,6 +25,7 @@ public class SwController extends BaseController{
 		Sw sw = new Sw();
 		sw.setCardNo(no);
 		sw.setMoney(num);
+		sw.setD(0.23565);
 		swService.save(sw);
 		return 1;
 	}
