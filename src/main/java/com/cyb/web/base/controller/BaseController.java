@@ -72,9 +72,8 @@ public class BaseController {
         }else if(e instanceof RuntimeException){
         	setMsgMap(FAILURE, "请求处理异常，请检查！");
         }else{
-        	setMsgMap(FAILURE, "上传失败");
+        	setMsgMap(FAILURE, "请求失败！");
         }
-        log.info("异常！"+e.toString());
         e.printStackTrace();
         return msgMap;
     }
