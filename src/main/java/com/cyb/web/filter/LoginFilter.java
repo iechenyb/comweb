@@ -41,69 +41,68 @@ public class LoginFilter implements Filter {
 	public void destroy() {
 	}
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		if(Boolean.valueOf(BaseConfiguration.get("useLoginFileter"))){
-		request.setCharacterEncoding("utf-8");
-		MyRequestWrapper req = new MyRequestWrapper((HttpServletRequest) request);
-		//HttpServletRequest req = (HttpServletRequest)request;
-        HttpServletResponse resp = (HttpServletResponse) response;  
-        String path = req.getContextPath();  
-        String basePath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+path;  
-        Object user = req.getSession(true).getAttribute(Contants.SSEIONUSERKEY);
-        if(req.getRequestURI().contains("job")
-        		||req.getRequestURI().contains("login/login.jsp")
-        		||req.getRequestURI().contains("user/login.do")
-        		||req.getRequestURI().contains("user/exit.do")
-        		||req.getRequestURI().contains("jsp/controller.jsp")//ueditor的请求不进行过滤
-        		){
-        	chain.doFilter(req, response);
-        }else{
-	        if (user == null || "".equals(user)) {  
-	        	if (req.getHeader("x-requested-with") != null 
-                        && "XMLHttpRequest".equalsIgnoreCase(req.getHeader("x-requested-with"))) {   
-	        		resp.setHeader("sessionstatus","timeout");
-	        		resp.setStatus(403);
-	        		Map<String,Object> res = new HashMap<String, Object>();
-	        		res.put("zt", 999);
-	        		res.put("msg", "会话已经过期，请重新登录！");
-                    resp.getWriter().print(JSONObject.fromObject(res));
-                    return ;
-                }else{
-		            resp.setHeader("Cache-Control", "no-store");  
-		            resp.setDateHeader("Expires", 0);  
-		            resp.setHeader("Prama", "no-cache");  
-		            resp.sendRedirect(basePath+"/login/login.jsp?cmd=timeout");
-                }
-	        } else{
-	        	if(Boolean.valueOf(Configuration.get("enableXSS")))
-	        	{   //new MyRequestWrapper((HttpServletRequest) request)
-		        	Map<String,String> ret = check(req);
-		        	if("1".equals(ret.get("has"))){//存在脚本注入风险
-		        		if (req.getHeader("x-requested-with") != null 
-		                        && "XMLHttpRequest".equalsIgnoreCase(req.getHeader("x-requested-with"))) {   
-			        		resp.setHeader("sessionstatus","timeout");
-			        		resp.setStatus(403);
-			        		Map<String,Object> res = new HashMap<String, Object>();
-			        		res.put("zt", 999);
-			        		res.put("msg", "请求存在风险，被系统拦截,存在敏感关键字["+ret.get("key")+"]！");
-		                    resp.getWriter().print(JSONObject.fromObject(res));
-		                    return ;
-		                }else{
-				            resp.setHeader("Cache-Control", "no-store");  
-				            resp.setDateHeader("Expires", 0);  
-				            resp.setHeader("Prama", "no-cache");  
-				            resp.sendRedirect(basePath+"/exception/xsserror.jsp");
-		                }
-		        	}else{
-		        		chain.doFilter(req, response);
-		        	}
-	        	}else{
-	        		chain.doFilter(req, response);
-	        	}
+			if(Boolean.valueOf(BaseConfiguration.get("useLoginFileter"))){
+					request.setCharacterEncoding("utf-8");
+					MyRequestWrapper req = new MyRequestWrapper((HttpServletRequest) request);
+			        HttpServletResponse resp = (HttpServletResponse) response;  
+			        String path = req.getContextPath();  
+			        String basePath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+path;  
+			        Object user = req.getSession(true).getAttribute(Contants.SSEIONUSERKEY);
+			        if(req.getRequestURI().contains("job")
+			        		||req.getRequestURI().contains("login/login.jsp")
+			        		||req.getRequestURI().contains("user/login.do")
+			        		||req.getRequestURI().contains("user/exit.do")
+			        		||req.getRequestURI().contains("jsp/controller.jsp")//ueditor的请求不进行过滤
+			        		){
+			        	chain.doFilter(req, response);
+			        }else{
+				        if (user == null || "".equals(user)) {  
+				        	if (req.getHeader("x-requested-with") != null 
+			                        && "XMLHttpRequest".equalsIgnoreCase(req.getHeader("x-requested-with"))) {   
+				        		resp.setHeader("sessionstatus","timeout");
+				        		resp.setStatus(403);
+				        		Map<String,Object> res = new HashMap<String, Object>();
+				        		res.put("zt", 999);
+				        		res.put("msg", "会话已经过期，请重新登录！");
+			                    resp.getWriter().print(JSONObject.fromObject(res));
+			                    return ;
+			                }else{
+					            resp.setHeader("Cache-Control", "no-store");  
+					            resp.setDateHeader("Expires", 0);  
+					            resp.setHeader("Prama", "no-cache");  
+					            resp.sendRedirect(basePath+"/login/login.jsp?cmd=timeout");
+			                }
+				        } else{
+				        	if(Boolean.valueOf(Configuration.get("enableXSS")))
+				        	{   
+					        	Map<String,String> ret = check(req);
+					        	if("1".equals(ret.get("has"))){//存在脚本注入风险
+					        		if (req.getHeader("x-requested-with") != null 
+					                        && "XMLHttpRequest".equalsIgnoreCase(req.getHeader("x-requested-with"))) {   
+						        		resp.setHeader("sessionstatus","timeout");
+						        		resp.setStatus(403);
+						        		Map<String,Object> res = new HashMap<String, Object>();
+						        		res.put("zt", 999);
+						        		res.put("msg", "请求存在风险，被系统拦截,存在敏感关键字["+ret.get("key")+"]！");
+					                    resp.getWriter().print(JSONObject.fromObject(res));
+					                    return ;
+					                }else{
+							            resp.setHeader("Cache-Control", "no-store");  
+							            resp.setDateHeader("Expires", 0);  
+							            resp.setHeader("Prama", "no-cache");  
+							            resp.sendRedirect(basePath+"/exception/xsserror.jsp");
+					                }
+					        	}else{
+					        		chain.doFilter(req, response);
+					        	}
+				        	}else{
+				        		chain.doFilter(req, response);
+				        	}
+						}
+			        }
+			}else{
+				chain.doFilter(request, response);
 			}
-        }
-		}else{
-			chain.doFilter(request, response);
-		}
 	}
 	
 	public Map<String,String> check(MyRequestWrapper request) throws IOException{

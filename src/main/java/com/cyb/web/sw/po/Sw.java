@@ -31,8 +31,6 @@ public class Sw {
     private String cardNo;  
 	@Column(name="money",nullable=false)
     private long money;
-    @Column(name="d")
-    private double d;
     public Sw() {  
         super();  
     }  
@@ -66,16 +64,5 @@ public class Sw {
 	public void setMoney(long money) {
 		this.money = money;
 	}
-
-
-	public double getD() {
-		return d;
-	}
-
-
-	public void setD(double d) {
-		this.d = d;
-	}
-
     
 }
