@@ -7,6 +7,7 @@ angular.module('app', []).controller('login', function($scope,$http) {
     url1 = $("#path").val()+"menu/getUserMenusTree1.do";
     url2 = $("#path").val()+"restfull/user/userMenu.json";
     $http.get(url1).success(function(data) {
+    	
 	    tdata=data;
 	    if(data.zt==0){
 	    	console.log("系统尚未初始化菜单！");
@@ -51,5 +52,10 @@ angular.module('app', []).controller('login', function($scope,$http) {
 		   	    }
 		    });
 	    }	    
-    });
+    }).error(function(data,header,config,status){
+    	//处理响应失败
+    	var obj = {};
+    	obj.status = header;
+    	checkAjaxSessionTimeOut(obj);
+    });;
 });

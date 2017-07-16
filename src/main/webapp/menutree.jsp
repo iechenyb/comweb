@@ -20,6 +20,7 @@ String basePath = "http://" + request.getServerName() + ":" + request.getServerP
 
     $(function ()
     {
+    	try{
         $("#tree1").ligerTree(
         {   checkbox:false,
         	onSelect: function(node){
@@ -32,6 +33,9 @@ String basePath = "http://" + request.getServerName() + ":" + request.getServerP
             onExpand: onExpand,
             onAfterAppend:collapseAll
         });
+    	}catch(e){
+    		console.log("err load tree!");
+    	}
         manager = $("#tree1").ligerGetTreeManager();
     });
  

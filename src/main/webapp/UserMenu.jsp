@@ -57,6 +57,7 @@
 <script src="<%=basePath%>amazeui/js/jquery.min.js"></script>
 <script src="<%=basePath%>angular/angular-1.0.1.min.js"></script>
 <script src="<%=basePath%>cdn/amazeui.tree.js"></script>
+<script src="<%=basePath%>js/pub/ajax.js"></script>
 <script src="<%=basePath%>tree.js"></script>
 </body>
 </html>
