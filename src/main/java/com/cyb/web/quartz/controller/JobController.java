@@ -6,13 +6,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cyb.web.quartz.MyJob;
-
+/**
+ * 定时任务更新管理
+ * @author iechenyb
+ *
+ */
 @Controller
 @RequestMapping("job")
-
 public class JobController {
   @Autowired
   MyJob job;
+  /**
+   * 
+   *作者 : iechenyb<br>
+   *方法描述: 说点啥<br>
+   *创建时间: 2017年7月15日hj12
+   *@return
+   */
   @RequestMapping("infor")
   @ResponseBody
   public boolean info(){
@@ -24,6 +34,14 @@ public class JobController {
 		return false;
 	}
   }
+  /**
+   *  
+   *作者 : iechenyb<br>
+   *方法描述: 说点啥<br>
+   *创建时间: 2017年7月15日hj12
+   *@param sec
+   *@return
+   */
   @RequestMapping("setSec")
   @ResponseBody
   public boolean resetTime(String sec){
@@ -35,6 +53,14 @@ public class JobController {
 		return false;
 	}
   }
+  /**
+   * 
+   *作者 : iechenyb<br>
+   *方法描述: 说点啥<br>
+   *创建时间: 2017年7月15日hj12
+   *@param sec
+   *@return
+   */
   @RequestMapping("removeJob")
   @ResponseBody
   public boolean remove(String sec){
@@ -46,6 +72,13 @@ public class JobController {
 		return false;
 	}
   }
+  /**
+   * 
+   *作者 : iechenyb<br>
+   *方法描述: 说点啥<br>
+   *创建时间: 2017年7月15日hj12
+   *@return
+   */
   @RequestMapping("addJob")
   @ResponseBody
   public boolean addJob(){
