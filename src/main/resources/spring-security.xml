@@ -10,6 +10,8 @@
   <http pattern="/user/login.do" security="none"/>
   <http pattern="/user/exit.do" security="none"/>
   <http pattern="login/login.jsp" security="none"/>
+  <http pattern="project/model/index.jsp" security="none"/>
+  <http pattern="/model/*" security="none"/>
   <http pattern="/denied.jsp" security="none"/>
   <http pattern="/index.jsp" security="none"/>
   <!--  entry-point-ref="myAuthenticationEntryPoint" -->

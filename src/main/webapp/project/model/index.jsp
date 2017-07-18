@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <jsp:include page="../pub/header.jsp"></jsp:include>
+<% String version=request.getAttribute("version").toString(); %>
 <!doctype html>
 <html ng-app="app">
 <head>
@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>模板页面</title>
 <link rel="stylesheet" href="amazeui/css/amazeui.min.css">
-<link rel="stylesheet" href="amazeui/css/app.css">
+<link rel="stylesheet" href="amazeui/css/app.css?v=<%=version%>">
 <script src="cdn/ueditor.config.js"></script>
 <script src="cdn/ueditor.all.min.js"></script>
 <script src="cdn/ueditor.parse.min.js"></script>
@@ -108,9 +108,9 @@
 	<script src="amazeui/js/amazeui.widgets.helper.js"></script>
 	<script src="amazeui/js/amazeui.widgets.helper.min.js"></script>
 	<script type="text/javascript" src="js/json2.js"></script>
-	<script src="js/pub/ajax.js"></script>
-	<script src="js/pub/page.js"></script>
-	<script src="js/pub/validate.js"></script>
-	<script src="js/model/model.js"></script>
+	<script src="js/pub/ajax.js?v=<%=version%>"></script>
+	<script src="js/pub/page.js?v=<%=version%>"></script>
+	<script src="js/pub/validate.js?v=<%=version%>"></script>
+	<script src="js/model/model.js?v=<%=version%>"></script>
 </body>
 </html>
