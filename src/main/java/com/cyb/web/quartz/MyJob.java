@@ -9,7 +9,6 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.springframework.scheduling.quartz.CronTriggerBean;
-import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
 
 import com.cyb.web.search.controller.SearchController;
@@ -18,14 +17,15 @@ public class MyJob {
 	Log log = LogFactory.getLog(SearchController.class);
 	@Resource(name="schedulerFactoryTest")
     private Scheduler scheduler; 
-	@Resource(name="myQuartzJob") //MethodInvokingJobDetailFactoryBean
+	
+	@Resource(name="myQuartzJob") 
 	private JobDetail myQuartzJob;
-	@Resource(name="myTrigger") //MethodInvokingJobDetailFactoryBean
+	
+	@Resource(name="myTrigger") 
 	private Trigger myTrigger;
+	
     private static int step=0;  
-    /*public void setScheduler(Scheduler scheduler) {  
-        this.scheduler = scheduler;  
-    }  */
+   
     /** 
      * 定时调用此方法 
      * @throws Exception 
@@ -39,7 +39,6 @@ public class MyJob {
      * @throws Exception 
      */  
     public void resetJob(String cronExpression) throws Exception {  
-        //CronTriggerBean trigger = (CronTriggerBean) scheduler.getTrigger("myTrigger", Scheduler.DEFAULT_GROUP);  
     	CronTriggerBean trigger = (CronTriggerBean) myTrigger; 
     	String oldConExpression = trigger.getCronExpression();   
         if (!oldConExpression.equalsIgnoreCase(cronExpression)) {  
@@ -53,7 +52,6 @@ public class MyJob {
     }  
     
     public void addJob(String cronExpression) throws Exception{
-    	//scheduler.addJob(myQuartzJob, true);
     	scheduler.scheduleJob(myQuartzJob, myTrigger);
     	resetJob(cronExpression);
     }

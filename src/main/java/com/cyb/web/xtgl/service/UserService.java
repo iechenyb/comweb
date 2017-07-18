@@ -56,4 +56,7 @@ public class UserService extends HibernateBaseService<User>{
 	public User getUserByNameAndPwd(String username,String password){
 		return this.dao.getUserByNameAndPwd(username, password);
 	}
+	public User getUserByName(String username){
+		return this.dao.getUserByName(username);
+	}
 }

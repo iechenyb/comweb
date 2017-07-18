@@ -1,10 +1,16 @@
 package com.cyb.web.base.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -72,10 +78,21 @@ public class BaseController {
         }else if(e instanceof RuntimeException){
         	setMsgMap(FAILURE, "请求处理异常，请检查！");
         }else{
-        	setMsgMap(FAILURE, "上传失败");
+        	setMsgMap(FAILURE, "请求失败！");
         }
-        log.info("异常！"+e.toString());
         e.printStackTrace();
         return msgMap;
     }
+	
+	public void downloadBase(HttpServletResponse response,String downName,File file) throws IOException{
+		OutputStream out = null;
+		response.reset();
+		response.setContentType("application/octet-stream; charset=utf-8");
+		response.setHeader("Content-Disposition", "attachment; filename=\""
+				+ new String(downName.getBytes("utf-8"),"iso-8859-1")+"\"");
+		out = response.getOutputStream();
+		out.write(FileUtils.readFileToByteArray(file));
+		out.flush();
+		
+	}
 }

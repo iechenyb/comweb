@@ -145,4 +145,5 @@
 		         <ref bean="dataSource" />
 		     </property>
      	</bean>
+     	<bean id="myUserDetailServiceImpl" class="com.cyb.security.MyUserDetailServiceImpl"/>
 </beans>

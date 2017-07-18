@@ -8,21 +8,22 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cyb.date.DateUtil;
 import com.cyb.web.base.controller.BaseController;
-import com.cyb.web.constant.Contants;
 import com.cyb.web.utils.Configuration;
 import com.cyb.web.xzzx.po.SysFile;
 import com.cyb.web.xzzx.service.XzzxService;
 import com.cyb.web.xzzx.utils.ImageBase64;
 import com.cyb.web.xzzx.vo.FileVo;
+
+import net.sf.json.JSONArray;
 /**
  * 
  * 功能描述：下载中心管理
@@ -32,6 +33,7 @@ import com.cyb.web.xzzx.vo.FileVo;
 @Controller
 @RequestMapping("xzzx")
 public class XzzxController extends BaseController{
+	Log log = LogFactory.getLog(XzzxController.class);
 	/**
 	 * @作者:iechenyb</br>
 	 * @功能描述：</br>
@@ -56,16 +58,23 @@ public class XzzxController extends BaseController{
 	@RequestMapping("upload")
 	public Map<String, Object> uploadFile(FileVo file) {
 		try {
+			com.cyb.file.FileUtils.genFileDir(Configuration.get("uploadPath")+Configuration.get("tmp"));
 			SysFile t = new SysFile();
 			t.setContent(file.getDesc());
 			t.setTitle(file.getTitle());
 			t.setTime(DateUtil.date2long8(new Date()).toString());
 			t.setFjname(file.getFile1().getOriginalFilename());
 			t.setSize(file.getFile1().getInputStream().available());
+			String savePath = Configuration.get("uploadPath")+Configuration.get("tmp")+file.getFile1().getOriginalFilename();
+			String savePath2 = Configuration.get("uploadPath")+Configuration.get("tmp")+file.getFile2().getOriginalFilename();
+			FileUtils.copyInputStreamToFile(file.getFile1().getInputStream(), new File(savePath));
+			FileUtils.copyInputStreamToFile(file.getFile2().getInputStream(), new File(savePath2));
+			log.info("上传的文件1："+savePath);
+			log.info("上传的文件2："+savePath2);
 			service.save(t);
-			String picPath=Contants.WEBPATH+"pic.jpg";
-			System.out.println(picPath);
+			String picPath=Configuration.get("uploadPath")+Configuration.get("tmp")+"pic.jpg";
 			ImageBase64.GenerateImage(file.getPicStr().split(",")[1], picPath);
+			log.info("裁剪文件流存储位置："+picPath);
 			setMsgMap(SUCCESS, "信息上传成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,26 +109,46 @@ public class XzzxController extends BaseController{
 	   @param response
 	   @param id
 	 */
+	@RequestMapping("downloadold")
+	public  void downLoad(HttpServletResponse response,String id) {
+		OutputStream out = null;
+		try {
+			SysFile f=(SysFile) service.get(id);
+			String path = Configuration.get("uploadPath")+Configuration.get("tmp");
+			com.cyb.file.FileUtils.genFileDir(path);
+			path=path+f.getFjname();
+			String fileName = f.getFjname();
+			response.reset();
+			response.setContentType("application/octet-stream; charset=utf-8");
+			response.setHeader("Content-Disposition", "attachment; filename=\""
+					+ new String(fileName.getBytes("utf-8"),"iso-8859-1")+"\"");
+			out = response.getOutputStream();
+			out.write(FileUtils.readFileToByteArray(new File(path)));
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	@RequestMapping("download")
 	public  void downLoadFile(HttpServletResponse response,String id) {
 		OutputStream out = null;
 		try {
-			String path = Contants.WEBPATH+Configuration.get("xzzxtmppath");
-			File file = new File( path);
-			if(!file.exists()){
-				file.createNewFile();
-			}else{
-				file.delete();
-			}
-			String fileName = "";
-			response.reset();
-			response.setContentType("application/octet-stream; charset=utf-8");
-			response.setHeader("Content-Disposition", "attachment; filename="
-					+ new String(fileName.getBytes("utf-8"),"iso-8859-1"));
-			out = response.getOutputStream();
-			out.write(FileUtils.readFileToByteArray(file));
-			out.flush();
-		} catch (IOException e) {
+			SysFile f=(SysFile) service.get(id);
+			String filePath = Configuration.get("uploadPath")+Configuration.get("tmp");
+			com.cyb.file.FileUtils.genFileDir(filePath);
+			filePath=filePath+f.getFjname();
+			String downName = f.getFjname();
+			File file = new File(filePath);
+			downloadBase(response,downName,file);
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (out != null) {

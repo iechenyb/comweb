@@ -34,9 +34,9 @@ public class WebListener implements ServletContextListener {
     		WebApplicationContext springContext = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
     		Contants.springContext = springContext;
     		H2Manager.start();
-			BaseConfiguration.initConfig("base");
-			AppConfiguration.initConfig("App-"+BaseConfiguration.get("environmental"));
-			Configuration.initConfig("config-"+BaseConfiguration.get("environmental"));
+			BaseConfiguration.initConfig("base");//相同配置 生产和测试环境一样的
+			//AppConfiguration.initConfig("App-"+BaseConfiguration.get("environmental"));//相同配置
+			Configuration.initConfig("config-"+BaseConfiguration.get("environmental"));//不同配置 生产和测试环境不一样的
 			LuceneMemIndexIK.createIndex();
 			LuceneMemIndexStandard.createIndex();
 			H2Manager.start();

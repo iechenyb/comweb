@@ -14,7 +14,6 @@ function initPageSpilt(data,page){
     }
     page.total = data.length;
 	var pages = Math.ceil(data.length /PAGESIZE);
-	console.log("页数："+pages);
 	if(pages<=1){
 	    if(pages==0){
 	    	realPagesEq0 = true;
@@ -25,7 +24,6 @@ function initPageSpilt(data,page){
 	}else{
 		page.pages = pages;
 	}
-	//$("#page").page({pages:pages});
 	$("#page").page({
         pages:page.pages, //页数
         curr: 1, //当前页 
@@ -84,4 +82,31 @@ function initPageSpilt(data,page){
 		   }catch(e){console.log("the error need not care add by iechenyb!");}
         }
     });
+}
+var jump = function(context) {//注意在全局作用域下定义
+   console.log('当前第：' + context.option.curr + "页");
+}   
+function calPages(data,page){
+    if(page.pageSize!=null&&page.pageSize!=''&&page.pageSize!='undefined'){
+    	PAGESIZE = page.pageSize;
+    }else{
+        page.pageSize = PAGESIZE;
+    }
+    page.total = data.length;
+	var pages = Math.ceil(data.length /PAGESIZE);
+	return pages;
+}
+//<a href="javascript:" data-page="2">最后一页</a>
+/**
+ * cur=3 pages=3 
+ */
+function toPage(page){
+	newpages =  calPages(page.list,page);
+	console.log("当前页"+page.cur+"当前总页数："+page.pages+",最新总页数："+calPages(page.list,page));
+	if(newpages<=page.pages){
+		index=newpages;
+	}else{
+		index=page.cur;
+	}
+	$("a[data-page="+index+"]").click();
 }

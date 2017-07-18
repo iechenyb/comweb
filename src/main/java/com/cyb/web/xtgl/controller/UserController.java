@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
@@ -14,6 +15,16 @@ import net.sf.json.JSONObject;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +56,9 @@ public class UserController extends BaseController {
 	 */
 	@Resource(name="userService")
 	UserService service;
+	
+	@Autowired
+	private AuthenticationManager myAuthenticationManager;
 	/**
 	 * 
 	 * 作者:iechenyb</br>
@@ -222,23 +236,35 @@ public class UserController extends BaseController {
 	@RequestMapping("login")
 	public JSONObject login(String username,String password,HttpServletRequest req){
 		Map<String,Object> res = new HashMap<String,Object>();
-		User user = service.getUserByNameAndPwd(username, password);
-		if(user!=null){
-			req.getSession().setAttribute(Contants.SSEIONUSERKEY, user);
-			req.getSession().setAttribute("username", user.getUsername());
-			res.put("zt", 1);
-			res.put("msg", "登录成功！");
-			user.setLoginSum(user.getLoginSum()+1);
-			String ip = req.getRemoteAddr();
-			if(user.getLastLoginIp()!=ip){
-				user.setLastLoginIp(user.getLoginIp());
-				user.setLoginIp(ip);
+		try{
+			Authentication authentication = myAuthenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
+			SecurityContext securityContext = SecurityContextHolder.getContext();
+			securityContext.setAuthentication(authentication);
+			HttpSession session = req.getSession(true);
+			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);	
+			
+			if(authentication!=null){
+				User user = service.getUserByName(username);
+				req.getSession().setAttribute(Contants.SSEIONUSERKEY, user);
+				req.getSession().setAttribute("username", user.getUsername());
+				res.put("zt", 1);
+				res.put("msg", "登录成功！");
+				user.setLoginSum(user.getLoginSum()+1);
+				String ip = req.getRemoteAddr();
+				if(user.getLastLoginIp()!=ip){
+					user.setLastLoginIp(user.getLoginIp());
+					user.setLoginIp(ip);
+				}
+				service.update(user);
+				log.info("["+username+"]登录成功，操作IP地址为["+ip+"]");
+			}else{
+				res.put("zt", 0);
+				res.put("msg", "用户名或者密码错误，请重新输入！");
 			}
-			service.update(user);
-			log.info("["+username+"]登录成功，操作IP地址为["+ip+"]");
-		}else{
+		}catch(Exception e){
 			res.put("zt", 0);
 			res.put("msg", "用户名或者密码错误，请重新输入！");
+			log.info("授权失败！"+e.toString());
 		}
 	  return JSONObject.fromObject(res);
 	}
@@ -279,13 +305,43 @@ public class UserController extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping("exit")
-	public ModelAndView exitWeb(HttpServletRequest req){
+	public ModelAndView exitWeb(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView view = new ModelAndView();
-		HttpSession session = req.getSession();
-		log.info("["+session.getAttribute("username")+"]退出成功，操作IP地址为["+req.getRemoteAddr()+"]");
+		HttpSession session = request.getSession();
 		session.removeAttribute(Contants.SSEIONUSERKEY);
 		session.removeAttribute("username");
 		view.setViewName("login/login");
+		
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) request
+				.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
+		Authentication auth = securityContextImpl.getAuthentication();
+		if (auth != null) {
+			log.info("exit infor:" + auth.getName());
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		} else {
+			log.info("无授权信息！");
+		}
+		try {
+			// 获得当前用户所拥有的权限
+			@SuppressWarnings("unchecked")
+			List<GrantedAuthority> authorities = (List<GrantedAuthority>) securityContextImpl
+					.getAuthentication().getAuthorities();
+			for (GrantedAuthority grantedAuthority : authorities) {
+				log.info("Authority"
+						+ grantedAuthority.getAuthority());
+			}
+			WebAuthenticationDetails details = (WebAuthenticationDetails) securityContextImpl
+					.getAuthentication().getDetails();
+			// 获得访问地址
+			log.info("RemoteAddress" + details.getRemoteAddress());
+			// 获得sessionid
+			log.info("SessionId" + details.getSessionId());
+			// 登录密码，未加密的
+			log.info("Credentials:"
+					+ securityContextImpl.getAuthentication().getCredentials());
+		} catch (Exception e) {
+			log.info(e.toString());
+		}
 		return view;
 	}
 }

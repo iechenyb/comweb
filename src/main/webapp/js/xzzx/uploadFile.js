@@ -86,18 +86,15 @@ function submit(){
 		 dataType:'json',
 		 success:function (data){
 			 alert(data.msg);
-			 if(data.zt=='1'&&page.cmd=='add'){
-				 //window.location.reload();
+			 if(data.zt=='1'){
+				 document.getElementById("toList").click();
 				 page.files.push(data.t);
 				 initPageSplit(page.files,page);
 				 page.f = {};
 				 $('#bjbtn').attr("disabled",false);
 				 $('#bjbtn').attr("value","提交");
-			 }else{
-				 $('#bjbtn').attr("disabled",false);
-				 $('#bjbtn').attr("value","提交");
 			 }
-			  $('#eidtView').modal("close");
+			 $('#eidtView').modal("close");
 		 },
 		 complete:function(data){
 			 checkAjaxSessionTimeOut(data);

@@ -72,7 +72,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
-			<!-- modified by qinxiang 20141208 -->
+			<!-- modified by iechenyb 20141208 -->
 			<!--  
 			<exclusions>
 				<exclusion>
@@ -251,19 +251,19 @@
 			<artifactId>jackson-module-jaxb-annotations</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		<!-- add by qinxiang 20141215 -->
+		<!-- add by iechenyb 20141215 -->
 		<dependency>
   			<groupId>commons-beanutils</groupId>
   			<artifactId>commons-beanutils</artifactId>
   			<version>1.8.3</version>
 		</dependency>
-		<!-- add by qinxiang 20141215 -->
+		<!-- add by iechenyb 20141215 -->
 		<dependency>
   			<groupId>commons-collections</groupId>
   			<artifactId>commons-collections</artifactId>
   			<version>3.2.2</version>
 		</dependency>
-		<!-- modified by qinxiang 20141211 -->
+		<!-- modified by iechenyb 20141211 -->
 		<!--  
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -271,19 +271,19 @@
 			<version>1.2.1</version>
 		</dependency>
 		-->
-		<!-- add by qinxiang 20141211 -->
+		<!-- add by iechenyb 20141211 -->
 		<dependency>
   			<groupId>commons-lang</groupId>
   			<artifactId>commons-lang</artifactId>
   			<version>2.6</version>
 		</dependency>
-		<!-- add by qinxiang 20141211 -->
+		<!-- add by iechenyb 20141211 -->
 		<dependency>
   			<groupId>net.sf.ezmorph</groupId>
   			<artifactId>ezmorph</artifactId>
   			<version>1.0.6</version>
 		</dependency>
-		<!-- add by qinxiang 20141211 -->
+		<!-- add by iechenyb 20141211 -->
 		<dependency>
   			<groupId>net.sf.json-lib</groupId>
   			<artifactId>json-lib</artifactId>
@@ -393,7 +393,7 @@
 			<version>2.6.2</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- add by qinxiang 20141210 -->
+		<!-- add by iechenyb 20141210 -->
 		<dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
