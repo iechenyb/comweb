@@ -1,6 +1,6 @@
 package com.cyb.web.constant;
 
-import java.util.Map;
+import org.springframework.web.context.WebApplicationContext;
 
 public class Contants {
 	/**
@@ -9,6 +9,7 @@ public class Contants {
 	 * @创建时间：2016年10月20日上午11:09:02</br>
 	 */
 	public static String WEBPATH = "";
+	public static WebApplicationContext springContext=null;
 	public static String SSEIONUSERKEY = "user";
 	public static String DEFAULTPASSWORD = "111111";
 

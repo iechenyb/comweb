@@ -19,7 +19,7 @@
 			<value>0/20 * * * * ?</value>       
 		</property>   
 	</bean>
-	<bean name="schedulerFactoryTest" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">    
+	<bean id="jobTest" name="schedulerFactoryTest" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">    
 		<property name="triggers">      
 			<list>            
 				<ref bean="myTrigger" /> 
