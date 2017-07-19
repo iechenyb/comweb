@@ -6,13 +6,9 @@ package com.cyb.web.constant;
  *创建时间: 2017年7月18日
  */
 public enum Config {
-	DEV("pro"),TEST("test"),PRO("pro");
+	ENVIRONMENTAL("environmental"),DEV("dev"),TEST("test"),PRO("pro");
 	public String value;
 	private Config(String value){
 		this.value = value;
-	}
-	public static void main(String[] args) {
-		System.out.println(Config.TEST.value);
-		System.out.println(Config.PRO.value);
 	}
 }

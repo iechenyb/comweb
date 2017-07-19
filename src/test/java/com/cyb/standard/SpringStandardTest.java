@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.cyb.UUIDUtils;
 import com.cyb.date.DateUtil;
 import com.cyb.web.model.po.Model;
+import com.cyb.web.model.po.Model2;
+import com.cyb.web.model.service.Model2Service;
 import com.cyb.web.model.service.ModelService;
 /**
  *作者 : iechenyb<br>
@@ -30,6 +32,8 @@ public class SpringStandardTest  {
 	Log log = LogFactory.getLog(SpringStandardTest.class);
 	@Autowired
 	ModelService service;
+	@Autowired
+	Model2Service service2;
 	@Before
 	public void init() {
 		System.out.println("初始化..."+service);
@@ -47,12 +51,33 @@ public class SpringStandardTest  {
 		System.out.println("手动设置id:"+uuid);
 		model1.setCzsj(DateUtil.date2long14(new Date()).toString());
 		service.save(model1);
+		
+		Model2 model3 = new Model2();//没有策略，不设置id
+		String uuid3 = UUIDUtils.getUUID();
+		System.out.println("手动设置id:"+uuid3);
+		model3.setId(uuid3);
+		model3.setCzsj(DateUtil.date2long14(new Date()).toString());
+		service2.save(model3);//报错
+		
+		Model2 model4 = new Model2();//没有策略，设置id
+		String uuid2 = UUIDUtils.getUUID();
+		model4.setId(uuid2);
+		System.out.println("手动设置id:"+uuid2);
+		model4.setCzsj(DateUtil.date2long14(new Date()).toString());
+		service2.save(model4);
+		
+		
 	}
 	@After
 	public void show(){
 		System.out.println("数据展示");
 		List<Model> list = service.getList();
 		for(Model model:list){
+			System.out.println(model.getId()+","+model.getCzsj());
+		}
+		System.out.println("数据展示2");
+		List<Model2> list2 = (List<Model2>) service2.getList();
+		for(Model2 model:list2){
 			System.out.println(model.getId()+","+model.getCzsj());
 		}
 	}
