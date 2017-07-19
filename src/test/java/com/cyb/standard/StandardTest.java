@@ -17,7 +17,7 @@ import com.cyb.web.model.service.Model2Service;
 import com.cyb.web.model.service.ModelService;
 /**
  *作者 : iechenyb<br>
- *类描述: 说点啥<br>
+ *类描述: 标准的单元测试<br>
  *创建时间: 2017年7月19日
  */
 @Transactional
