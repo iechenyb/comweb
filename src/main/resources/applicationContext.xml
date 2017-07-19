@@ -20,7 +20,7 @@
                         http://www.springframework.org/schema/task/spring-task-3.1.xsd"
 						>
 	<context:annotation-config/><!-- 配置事物起作用 -->
-	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />  
+	<!-- <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />   -->
 	<task:annotation-driven/> 
 	<context:component-scan base-package="com.cyb.web">
 	   <!-- 父容器  不扫描子容器controller -->
@@ -83,12 +83,14 @@
 	      </props>
       </property>
 		<property name="packagesToScan">
-		  <list> 
+		 <!--  <list> 
                 <value>com.cyb.web.xtgl.po</value> 
                 <value>com.cyb.web.xzzx.po</value> 
                 <value>com.cyb.web.sw.po</value> 
-                 <value>com.cyb.web.xss.po</value> 
-          </list> 
+                <value>com.cyb.web.xss.po</value> 
+                <value>com.cyb.web.model.po</value> 
+          </list>  -->
+          <list><value>com.cyb.web..*</value></list>
         </property> 
         <!-- <property name="mappingDirectoryLocations">
             <list>

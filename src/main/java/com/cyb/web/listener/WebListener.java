@@ -52,9 +52,10 @@ public class WebListener implements ServletContextListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+    	WebApplicationContext springContext = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
     	try {
     		log.info("正在销毁测试定时任务！");
-			Scheduler testJob = (Scheduler) SpringUtils.getBean("jobTest");
+			Scheduler testJob = (Scheduler) springContext.getBean("jobTest");
 			if(testJob!=null){
 				if(testJob.isStarted()){
 					testJob.shutdown();

@@ -3,12 +3,14 @@ package com.cyb.web.base.service;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
 import com.cyb.web.base.dao.HibernateBaseDao;
+import com.cyb.web.model.po.Model;
 
 
 @Component("baseService")
@@ -48,6 +50,9 @@ public class HibernateBaseService<T> {
 		baseDao.delete(t);
 	}
 	
+	public List<T> list(){
+		return baseDao.list();
+	}
 	public Object get(String id){
 		return baseDao.get(clazz, id);
 	}

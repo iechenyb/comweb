@@ -18,9 +18,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import com.cyb.web.base.po.Page;
-import com.cyb.web.model.po.Model;
-@Component("baseDao")
-public class HibernateBaseDao<T>{
+@Component("baseDao2")
+public class HibernateBaseDao2<T> extends HibernateDaoSupport {
 	@Resource(name="jdbcTemplate")
 	public JdbcTemplate jdbcTemplate;
 	/**
@@ -28,9 +27,11 @@ public class HibernateBaseDao<T>{
 	 * @功能描述：</br>
 	 * @创建时间：2016年10月19日下午3:17:28</br>
 	 */
-	Log log = LogFactory.getLog(HibernateBaseDao.class);
-	@Resource(name="sessionFactory")
-	public SessionFactory sessionFactory;
+	Log log = LogFactory.getLog(HibernateBaseDao2.class);
+	@Resource  
+    public void setSessionFacotry(SessionFactory sessionFacotry) {  
+        super.setSessionFactory(sessionFacotry);  
+    } 
 
 	protected Class<T> clazz;
 
@@ -40,25 +41,12 @@ public class HibernateBaseDao<T>{
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public HibernateBaseDao() {
+	public HibernateBaseDao2() {
 		Type t = getClass().getGenericSuperclass();
         if(t instanceof ParameterizedType){
             Type[] p = ((ParameterizedType)t).getActualTypeArguments();
             clazz = (Class<T>)p[0];
         }
-	}
-	
-	public Session getSession(){
-			Session session = null ;
-			try {
-				session = sessionFactory.getCurrentSession();
-				if(session==null){
-					session = sessionFactory.openSession();
-				}
-			} catch (Exception e) {
-				return sessionFactory.openSession();
-			}
-			return session;
 	}
 	
 	public void close(Session session){
@@ -93,10 +81,7 @@ public class HibernateBaseDao<T>{
 		}
 		return entity;
 	}
-	@SuppressWarnings("unchecked")
-	public List<T> list(){
-		return this.getSession().createCriteria(clazz).list();
-	}
+	
 	@SuppressWarnings("unchecked")
 	public T load(Class<?> clazz,String id) {
 		T entity = null;
@@ -160,6 +145,41 @@ public class HibernateBaseDao<T>{
             page.setList(session.createQuery(queryHql).setFirstResult(page.getCunrrentPage())  
                     .setMaxResults(page.getPageSize()).list());  
             page.setTotalCount(Integer.parseInt(session.createQuery(queryCountHql).setMaxResults(1).uniqueResult()  
+                    .toString()));  
+        }  
+        catch (Exception e)  
+        {  
+            throw new RuntimeException(e);  
+        }  
+        return page.getList();  
+    }  
+  
+    public List<?> showPage(String queryHql, DetachedCriteria criteria, int firstResult, int maxResult)  
+            throws Exception  
+    {  
+        List<Object> list = new ArrayList<Object>();  
+        try  
+        {  
+            Session session = this.getSession();  
+            list.add(this.getHibernateTemplate().findByCriteria(criteria, firstResult, maxResult));  
+            list.add(session.createQuery(queryHql).setMaxResults(1).uniqueResult());  
+        }  
+        catch (Exception e)  
+        {  
+            throw new RuntimeException(e);  
+        }  
+        return list;  
+    }  
+  
+    @SuppressWarnings({ "unchecked", "hiding" })
+	public <T> List<T> showPage(String queryHql, DetachedCriteria criteria, Page<T> page) throws Exception  
+    {  
+        try  
+        {  
+            Session session = this.getSession();  
+            page.setList(this.getHibernateTemplate().findByCriteria(criteria, page.getCunrrentPage(),  
+                    page.getPageSize()));  
+            page.setTotalCount(Integer.parseInt(session.createQuery(queryHql).setMaxResults(1).uniqueResult()  
                     .toString()));  
         }  
         catch (Exception e)  

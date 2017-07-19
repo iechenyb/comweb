@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.cyb</groupId>
-  <artifactId>comweb</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>DhCasClient Maven Webapp</name>
-  <url>http://maven.apache.org</url>
- <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cyb</groupId>
+	<artifactId>comweb</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>DhCasClient Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- version setting -->
 		<spring.version>3.2.5.RELEASE</spring.version>
@@ -50,17 +50,11 @@
 	</properties>
 
 	<dependencies>
-	    <!-- Spring Security -->
-		<!-- <dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${springsecurity.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${springsecurity.version}</version>
-		</dependency> -->
+		<!-- Spring Security -->
+		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-web</artifactId> 
+			<version>${springsecurity.version}</version> </dependency> <dependency> <groupId>org.springframework.security</groupId> 
+			<artifactId>spring-security-config</artifactId> <version>${springsecurity.version}</version> 
+			</dependency> -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -73,14 +67,8 @@
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 			<!-- modified by iechenyb 20141208 -->
-			<!--  
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-			-->
+			<!-- <exclusions> <exclusion> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
+				</exclusion> </exclusions> -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -163,11 +151,8 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search</artifactId>
-			<version>${hibernate-search.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-search</artifactId> 
+			<version>${hibernate-search.version}</version> </dependency> -->
 
 		<!-- jdbc driver -->
 		<dependency>
@@ -253,44 +238,39 @@
 		</dependency>
 		<!-- add by iechenyb 20141215 -->
 		<dependency>
-  			<groupId>commons-beanutils</groupId>
-  			<artifactId>commons-beanutils</artifactId>
-  			<version>1.8.3</version>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.3</version>
 		</dependency>
 		<!-- add by iechenyb 20141215 -->
 		<dependency>
-  			<groupId>commons-collections</groupId>
-  			<artifactId>commons-collections</artifactId>
-  			<version>3.2.2</version>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.2</version>
 		</dependency>
 		<!-- modified by iechenyb 20141211 -->
-		<!--  
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>fastjson</artifactId> 
+			<version>1.2.1</version> </dependency> -->
 		<!-- add by iechenyb 20141211 -->
 		<dependency>
-  			<groupId>commons-lang</groupId>
-  			<artifactId>commons-lang</artifactId>
-  			<version>2.6</version>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
 		</dependency>
 		<!-- add by iechenyb 20141211 -->
 		<dependency>
-  			<groupId>net.sf.ezmorph</groupId>
-  			<artifactId>ezmorph</artifactId>
-  			<version>1.0.6</version>
+			<groupId>net.sf.ezmorph</groupId>
+			<artifactId>ezmorph</artifactId>
+			<version>1.0.6</version>
 		</dependency>
 		<!-- add by iechenyb 20141211 -->
 		<dependency>
-  			<groupId>net.sf.json-lib</groupId>
-  			<artifactId>json-lib</artifactId>
-  			<version>2.4</version>
-  			<classifier>jdk15</classifier>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
 		</dependency>
-		
+
 		<!-- xstream xml -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
@@ -395,77 +375,73 @@
 		</dependency>
 		<!-- add by iechenyb 20141210 -->
 		<dependency>
-            <groupId>org.apache.ant</groupId>
-            <artifactId>ant</artifactId>
-            <version>1.7.0</version>
-         </dependency>
-		<!--<dependency>
-  			<groupId>fakepath</groupId>
- 			<artifactId>h2</artifactId>
-  			<version>1.3.173</version>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>1.7.0</version>
 		</dependency>
-		  <dependency>
-  			<groupId>fakepath</groupId>
-  			<artifactId>netty-socketio</artifactId>
-  			<version>1.7.3</version>
-		</dependency>
-		-->
-		
-		 <dependency>
+		<!--<dependency> <groupId>fakepath</groupId> <artifactId>h2</artifactId> 
+			<version>1.3.173</version> </dependency> <dependency> <groupId>fakepath</groupId> 
+			<artifactId>netty-socketio</artifactId> <version>1.7.3</version> </dependency> -->
+
+		<dependency>
 			<groupId>com.corundumstudio.socketio</groupId>
 			<artifactId>netty-socketio</artifactId>
 			<version>1.7.3</version>
 		</dependency>
 		<dependency>
-    <groupId>com.alibaba</groupId>
-	    <artifactId>druid</artifactId>
-	    <version>1.0.20</version>
-    </dependency> 
-  <!-- <dependency>
-    <groupId>com.hynnet</groupId>
-    <artifactId>sqljdbc-chs</artifactId>
-    <version>4.0.2206.100</version>
-</dependency> -->
-<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
-<dependency>
-    <groupId>redis.clients</groupId>
-    <artifactId>jedis</artifactId>
-    <version>2.8.1</version>
-</dependency>
-<dependency>
-    <groupId>commons-net</groupId>
-    <artifactId>commons-net</artifactId>
-    <version>1.4.1</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi</artifactId>
-    <version>3.13</version>
-</dependency>
-<dependency>
-    <groupId>org.htmlparser</groupId>
-    <artifactId>htmlparser</artifactId>
-    <version>2.1</version>
-</dependency>
-<dependency>  
-    <groupId>com.mangofactory</groupId>  
-    <artifactId>swagger-springmvc</artifactId>  
-    <version>1.0.1</version>  
-</dependency>  
-    <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-            <version>1.8.6</version>
-        </dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.20</version>
+		</dependency>
+		<!-- <dependency> <groupId>com.hynnet</groupId> <artifactId>sqljdbc-chs</artifactId> 
+			<version>4.0.2206.100</version> </dependency> -->
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.htmlparser</groupId>
+			<artifactId>htmlparser</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mangofactory</groupId>
+			<artifactId>swagger-springmvc</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.8.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.2.5.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
-  <build>
-    <finalName>comweb</finalName>
-  </build>
-  <repositories>  
-    <repository>  
-      <id>jcenter-release</id>  
-      <name>jcenter</name>  
-      <url>http://oss.jfrog.org/artifactory/oss-release-local/</url>  
-    </repository>  
-</repositories>  
+	<build>
+		<finalName>comweb</finalName>
+	</build>
+	<repositories>
+		<repository>
+			<id>jcenter-release</id>
+			<name>jcenter</name>
+			<url>http://oss.jfrog.org/artifactory/oss-release-local/</url>
+		</repository>
+	</repositories>
 </project>

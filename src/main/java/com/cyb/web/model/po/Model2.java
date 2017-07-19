@@ -9,16 +9,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator; 
 /**
  *作者: iechenyb<br>
- *类描述: 说点啥<br>
+ *类描述: 测试手动设置主键<br>
  *创建时间: 2017年07月16日 13时08分25秒
  */
 @Entity
-@Table(name="tb_model")
+@Table(name="tb_model2")
 @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Model {
+public class Model2 {
  	@Id
-	@GenericGenerator(strategy="uuid",name="user_uuid")
-	@GeneratedValue(generator="user_uuid")
 	@Column(name="id",unique=true, nullable=false,length=50)
 	private String id;   
   	@Column(nullable=true,columnDefinition="varchar(40) DEFAULT ''comment '操作员标识'")
