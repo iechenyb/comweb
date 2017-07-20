@@ -8,11 +8,10 @@ import org.springframework.stereotype.Service;
 import com.cyb.web.base.service.HibernateBaseService;
 import com.cyb.web.model.dao.ModelDao;
 import com.cyb.web.model.po.Model;
-import com.cyb.web.sw.dao.SwDao;
 /**
  * 作者 : iechenyb
  * 功能描述: 说点啥
- * 创建时间: 2017年07月16日 13时03分26秒
+ * 创建时间: 2017年07月16日 13时03分26秒 implements GenericService<Model>
  */
 @Service("modelService")
 public class ModelService extends HibernateBaseService<Model> {

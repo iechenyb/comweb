@@ -48,7 +48,6 @@ public class BaseQuery extends BaseUtils{
 	
 	@org.junit.Test
 	public void findAllWithPoName(){
-		System.out.println(service+","+servicem);
 		System.out.println(service1.clazz+"默认根据id排序，po名称查询所有记录！"+service.clazz);
 		show((List<Model>)service.list("Model"));
 		show((List<Model>)service.list(Model.class));//error
@@ -56,12 +55,12 @@ public class BaseQuery extends BaseUtils{
 	
 	@org.junit.Test
 	public void findAllNoPoName(){
-		System.out.println(dao1.clazz+"默认根据id排序，po类型查询所有记录！"+dao.clazz);
 		show((List<Model>)service.list(Model.class));
 		
 		//System.out.println("默认根据id排序，po泛型名称查询所有记录！");
-		show((List<Model>)service.getListOrderById());//error
-		show((List<Model>)service.getAll());
+		show((List<Model>)service.getListOrderById());//测试service层泛型
+		show((List<Model>)service.getAll());//测试service层泛型
+		show((List<Model>)service.list());//测试dao层泛型
 	}
 	
 	@org.junit.Test
@@ -91,6 +90,11 @@ public class BaseQuery extends BaseUtils{
 		for(ChildPo2 po:list2){
 			System.out.println(po.getId()+","+po.getChildName());
 		}
+	}
+	@org.junit.Test
+	public void getFanxing(){
+		System.out.println(dao1.clazz+",dao,"+dao.clazz);
+		System.out.println(service.clazz+",service,"+servicem.clazz);
 	}
 	
 }

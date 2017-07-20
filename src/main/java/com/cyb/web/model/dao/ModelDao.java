@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.cyb.web.base.dao.GenericDao;
 import com.cyb.web.base.dao.HibernateBaseDao;
 import com.cyb.web.model.po.Model;
 
@@ -12,7 +13,7 @@ import com.cyb.web.model.po.Model;
  * 创建时间: 2017年07月16日 13时03分26秒
  */
 @Repository("modelDao")
-public class ModelDao extends HibernateBaseDao<Model>{
+public class ModelDao extends HibernateBaseDao<Model> implements GenericDao<Model>{
     /**
 	 * 作者 : iechenyb
 	 * 功能描述: 说点啥
@@ -23,7 +24,4 @@ public class ModelDao extends HibernateBaseDao<Model>{
        List<Model> list = this.getSession().createQuery("from Model").list();
 	   return list;
    }
-    public static void main(String[] args) {
-		
-	}
 }
