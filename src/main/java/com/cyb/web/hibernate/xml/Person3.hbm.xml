@@ -1,0 +1,31 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">    
+<hibernate-mapping package="com.cyb.web.hibernate">    
+    <!-- Person表 -->    
+    <class name="BasePo" table="basepo">       
+       <!-- person 表保存公共属性 -->  
+        <id name="id">    
+            <!-- 父类的主键生成策略为‘分配’ -->    
+            <generator class="assigned"></generator>    
+        </id>    
+        <property name="name" column="Name" type="string"></property>    
+        <property name="sex" column="Sex" type="string"></property>    
+        <property name="age" column="Age" type="java.lang.Integer"></property>    
+            
+        <!-- student表 ,name是类名。table是对应的表名-->    
+        <joined-subclass name="Student" table="student">    
+            <key column="Sid"></key>  <!-- 指定了子类和父类之间是通过哪个字段来关联的 ，这里的关联是内连接-->  
+            <property column="Sno" name="sno" type="string" ></property> <!-- 子类特征属性 -->  
+            <property column="School" name="school" type="string" ></property>    <!-- 子类特征属性 -->  
+        </joined-subclass>    
+            
+        <!-- worker表 -->    
+        <joined-subclass name="Worker" table="worker">    
+            <key column="Wid"></key>    
+            <property column="Wno" name="wno" type="string" ></property>  <!-- 子类特征属性 -->  
+            <property column="Salary" name="salary" type="double" ></property>  <!-- 子类特征属性 -->  
+        </joined-subclass>    
+    </class>    
+</hibernate-mapping>  

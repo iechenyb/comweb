@@ -1,29 +1,27 @@
 package com.cyb.web.model.service;
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cyb.web.base.service.HibernateBaseService;
-import com.cyb.web.model.dao.ModelDao;
-import com.cyb.web.model.po.Model;
-import com.cyb.web.sw.dao.SwDao;
+import com.cyb.web.model.dao.ChildPo2Dao;
+import com.cyb.web.model.po.ChildPo2;
 /**
  * 作者 : iechenyb
  * 功能描述: 说点啥
  * 创建时间: 2017年07月16日 13时03分26秒
  */
-@Service("modelService")
-public class ModelService extends HibernateBaseService<Model> {
-   @Resource
-   private ModelDao model;
+@Service("childPo2Service")
+public class ChildPo2Service extends HibernateBaseService<ChildPo2> {
+   @Autowired
+   private ChildPo2Dao model;
    /**
    * 作者 : iechenyb
    * 功能描述: 说点啥
    * 创建时间: 2017年07月16日 13时03分26秒
    */
-   public List<Model> getList(){
+   public List<ChildPo2> getList(){
    	 return model.getList();
    }
 }

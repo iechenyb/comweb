@@ -12,15 +12,13 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import com.cyb.web.base.po.Page;
-import com.cyb.web.model.po.Model;
 @Component("baseDao")
 public class HibernateBaseDao<T>{
+	
 	@Resource(name="jdbcTemplate")
 	public JdbcTemplate jdbcTemplate;
 	/**
@@ -29,10 +27,11 @@ public class HibernateBaseDao<T>{
 	 * @创建时间：2016年10月19日下午3:17:28</br>
 	 */
 	Log log = LogFactory.getLog(HibernateBaseDao.class);
+	
 	@Resource(name="sessionFactory")
 	public SessionFactory sessionFactory;
 
-	protected Class<T> clazz;
+	public Class<T> clazz;
 
 	/**
 	 * 通过反射泛型获取Class类型,getGenericSuperclass()方法获取对象的泛型的父类类型信息，
@@ -45,20 +44,21 @@ public class HibernateBaseDao<T>{
         if(t instanceof ParameterizedType){
             Type[] p = ((ParameterizedType)t).getActualTypeArguments();
             clazz = (Class<T>)p[0];
+            System.out.println("泛型类型dao："+clazz);
         }
 	}
 	
 	public Session getSession(){
-			Session session = null ;
-			try {
-				session = sessionFactory.getCurrentSession();
-				if(session==null){
-					session = sessionFactory.openSession();
-				}
-			} catch (Exception e) {
-				return sessionFactory.openSession();
+		Session session = null ;
+		try {
+			session = sessionFactory.getCurrentSession();
+			if(session==null){
+				session = sessionFactory.openSession();
 			}
-			return session;
+		} catch (Exception e) {
+			return sessionFactory.openSession();
+		}
+		return session;
 	}
 	
 	public void close(Session session){
@@ -97,6 +97,7 @@ public class HibernateBaseDao<T>{
 	public List<T> list(){
 		return this.getSession().createCriteria(clazz).list();
 	}
+	
 	@SuppressWarnings("unchecked")
 	public T load(Class<?> clazz,String id) {
 		T entity = null;
@@ -123,6 +124,17 @@ public class HibernateBaseDao<T>{
 	public List<T> getAll(String entityName){
 		Object obj = this.getSession()
 				.createQuery("from "+entityName+" order by id")
+				.setCacheable(true).list();
+		if(obj!=null){
+			return (List<T>)obj;
+		}else{
+			return new ArrayList<T>();
+		}
+	}
+	@SuppressWarnings("unchecked")
+	public List<T> getAll(Class<?> cls){
+		Object obj = this.getSession()
+				.createQuery("from "+cls.getSimpleName()+" order by id")
 				.setCacheable(true).list();
 		if(obj!=null){
 			return (List<T>)obj;

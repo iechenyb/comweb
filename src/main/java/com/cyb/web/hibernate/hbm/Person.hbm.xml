@@ -1,0 +1,30 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+<!-- http://blog.csdn.net/tuke_tuke/article/details/50094453 -->  
+<hibernate-mapping package="com.cyb.web.hibernate.po">    
+    <!-- Person表 -->    
+    <class name="HibernateBasePo" table="basepo"  abstract="true">    
+    <id column="Id" name="id" type="integer">    
+        <!-- 主键的生成策略为'分配' -->    
+        <generator class="assigned"></generator>    
+    </id>    
+    <property column="Name" name="name" type="string"></property>    
+    <property column="Sex" name="sex" type="string"></property>    
+    <property column="Age" name="age" type="integer"></property>  <!-- 公共属性 -->  
+        
+    <!--student具体类-->    
+    <union-subclass name="Student" table="student">    
+        <property column="Sno" name="sno" type="string"></property>      <!-- 特征属性 -->   
+        <property column="School" name="school" type="string"></property>  <!-- 特征属性 -->  
+    </union-subclass>    
+        
+    <!--worker具体类-->    
+    <union-subclass name="Worker" table="worker">    
+        <property column="Wno" name="wno" type="string"></property>  <!-- 特征属性 -->  
+        <property column="Salary" name="salary" type="double"></property>  <!-- 特征属性 -->  
+    </union-subclass>    
+        
+    </class>    
+</hibernate-mapping>

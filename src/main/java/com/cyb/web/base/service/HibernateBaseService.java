@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.cyb.web.base.dao.HibernateBaseDao;
-import com.cyb.web.model.po.Model;
 
 
 @Component("baseService")
@@ -22,7 +21,8 @@ public class HibernateBaseService<T> {
 	 */
 	@Resource(name="baseDao")
 	HibernateBaseDao<T> baseDao;
-	protected Class<T> clazz;
+	
+	public Class<T> clazz;
 	
 	@SuppressWarnings("unchecked")
 	public HibernateBaseService() {
@@ -30,6 +30,7 @@ public class HibernateBaseService<T> {
         if(t instanceof ParameterizedType){
             Type[] p = ((ParameterizedType)t).getActualTypeArguments();
             clazz = (Class<T>)p[0];
+            System.out.println("泛型类型service："+clazz);
         }
 	}
 	/**
@@ -53,19 +54,22 @@ public class HibernateBaseService<T> {
 	public List<T> list(){
 		return baseDao.list();
 	}
-	public Object get(String id){
+	public T get(String id){
 		return baseDao.get(clazz, id);
 	}
-	public Object getAll(){
+	public List<T> getAll(){
 		return baseDao.getAll();
 	}
-	public Object getAll(String entityName){
+	public List<T> getAll(Class<?> cls){
+		return baseDao.getAll(cls);
+	}
+	public List<T> getAll(String entityName){
 		return baseDao.getAll(entityName);
 	}
-	public Object load(String id){
+	public T load(String id){
 		return baseDao.load(clazz, id);
 	}
 	public void evict(Object t){
-		   this.baseDao.evict(t);
+		this.baseDao.evict(t);
 	}
 }

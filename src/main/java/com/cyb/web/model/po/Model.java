@@ -12,9 +12,6 @@ import org.hibernate.annotations.GenericGenerator;
  *类描述: 说点啥<br>
  *创建时间: 2017年07月16日 13时08分25秒
  */
-@Entity
-@Table(name="tb_model")
-@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Model {
  	@Id
 	@GenericGenerator(strategy="uuid",name="user_uuid")

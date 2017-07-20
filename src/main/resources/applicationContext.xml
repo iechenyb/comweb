@@ -92,18 +92,18 @@
           </list>  -->
           <list><value>com.cyb.web..*</value></list>
         </property> 
-        <!-- <property name="mappingDirectoryLocations">
+         <!-- <property name="mappingDirectoryLocations">
             <list>
                 <value>
-                    /com/x/po/*.java 
+                    /com/cyb/web/hibernate/po/*.java 
                 </value>
             </list>
         </property>
 	     <property name="mappingResources">
 	         <list>
-	            <value>/com/x/hbm/bean.hbm.xml</value> 
+	            <value>/com/cyb/web/hibernate/hbm/Person.hbm.xml</value> 
 	        </list>
-	    </property> -->
+	    </property>  -->
 	</bean>		
 	    <!-- 开启AOP监听 只对当前配置文件有效 -->
         <aop:aspectj-autoproxy expose-proxy="true"/>

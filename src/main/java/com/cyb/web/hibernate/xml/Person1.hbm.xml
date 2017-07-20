@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >  
+<hibernate-mapping package="com.cyb.web.hibernate">    
+    <!-- Person表 -->    
+    <class name="BasePo" table="basepo">    
+        <id column="id" name="Id" type="integer">    
+            <!-- 主键生成策略为 '分配'  -->    
+            <generator class="assigned"></generator>    
+        </id>    
+        <!-- 鉴定列，区分列 discriminator 鉴别器-->    
+        <discriminator column="Type" type="string"></discriminator>  
+            
+        <property column="Name" name="name" type="string"></property>    
+        <property column="Age" name="age" type="integer"></property>    
+        <property column="Sex" name="sex" type="string"></property>    
+        
+    <!-- 子类，其鉴定列值为'stu' name是PO类名-->    
+    <subclass name="Student" discriminator-value="stu">    
+        <property column="School" name="school" type="string"></property>    
+        <property column="Sno" name="sno" type="string"></property>    
+    </subclass>    
+            
+    <!-- 子类，其鉴定列值为'worker' name是PO类名-->    
+    <subclass name="Worker" discriminator-value="worker">    
+        <property column="Wno" name="wno" type="string"></property>    
+        <property column="Salary" name="salary" type="double"></property>    
+    </subclass>    
+           
+    </class>    
+</hibernate-mapping>  
