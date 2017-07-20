@@ -21,9 +21,9 @@ public class SwService extends HibernateBaseService<Sw>{
 	SwDao swDao;
 	@SuppressWarnings("unused")
 	public void updateSw(String ex){
-		Sw sw1= swDao.getAll().get(0);
-		Sw sw2= swDao.getAll().get(1);
-		log.info("更新前:"+swDao.getAll().toString());
+		Sw sw1= swDao.list().get(0);
+		Sw sw2= swDao.list().get(1);
+		log.info("更新前:"+swDao.list().toString());
 		sw1.setMoney(sw1.getMoney()-100);
 		sw2.setMoney(sw2.getMoney()+100);
 		swDao.update(sw1);
@@ -31,9 +31,9 @@ public class SwService extends HibernateBaseService<Sw>{
 			int a=1/0;
 		}
 		swDao.update(sw2);
-		log.info("更新后1-100，2+100:"+swDao.getAll().toString());
+		log.info("更新后1-100，2+100:"+swDao.list().toString());
 	}
 	public List<Sw> getList(){
-		return swDao.getAll();
+		return swDao.list();
 	  }
 }

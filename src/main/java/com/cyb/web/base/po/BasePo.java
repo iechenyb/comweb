@@ -30,6 +30,8 @@ public class BasePo <ID extends Serializable> {
   	@Column(nullable=true,columnDefinition="varchar(14) DEFAULT ''comment '操作时间'")
     private String czsj;
   	
+	@Column(nullable=false,columnDefinition="int DEFAULT 0 comment '记录状态'")
+    private int zt;
 	public String getId() {
 		return id;
 	}
@@ -53,6 +55,12 @@ public class BasePo <ID extends Serializable> {
 	}
 	public void setCzsj(String czsj) {
 		this.czsj = czsj;
+	}
+	public int getZt() {
+		return zt;
+	}
+	public void setZt(int zt) {
+		this.zt = zt;
 	}
   	
 }

@@ -44,7 +44,7 @@ public class XzzxController extends BaseController{
 	@ResponseBody
 	@RequestMapping("list")
 	public JSONArray list(FileVo file) {
-		return JSONArray.fromObject(service.getAll("SysFile"));
+		return JSONArray.fromObject(service.list("SysFile"));
 	}
     /**
      * 

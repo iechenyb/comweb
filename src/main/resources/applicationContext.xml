@@ -90,7 +90,11 @@
                 <value>com.cyb.web.xss.po</value> 
                 <value>com.cyb.web.model.po</value> 
           </list>  -->
-          <list><value>com.cyb.web..*</value></list>
+          <list>
+          	<value>com.cyb.web..*</value>
+          	<value>com.cyb.web.model.po</value> 
+          </list>
+          
         </property> 
          <!-- <property name="mappingDirectoryLocations">
             <list>

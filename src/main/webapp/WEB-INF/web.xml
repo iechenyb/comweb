@@ -71,7 +71,7 @@
 	</filter-mapping>  
 	<!--  -->
 	<!-- 权限  Spring Security3.1 的权限过滤-->
-    <filter>
+    <!-- <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>
             org.springframework.web.filter.DelegatingFilterProxy
@@ -80,7 +80,7 @@
      <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping> 
+    </filter-mapping>  -->
 	<!--  -->
     <session-config>
         <session-timeout>60</session-timeout>

@@ -130,8 +130,8 @@ public class ModelController extends com.cyb.web.base.controller.BaseController 
     */
    @ResponseBody
    @RequestMapping("list")
-   public List<?> list(){
-	   return modelService.getList();
+   public List<Model> list(){
+	   return modelService.list();
    }
    
 }

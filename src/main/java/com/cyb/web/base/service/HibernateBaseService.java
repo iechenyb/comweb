@@ -1,8 +1,7 @@
 package com.cyb.web.base.service;
-
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,8 +9,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.cyb.web.base.dao.HibernateBaseDao;
-
-
 @Component("baseService")
 public class HibernateBaseService<T> {
 	/**
@@ -57,14 +54,26 @@ public class HibernateBaseService<T> {
 	public T get(String id){
 		return baseDao.get(clazz, id);
 	}
+	@SuppressWarnings("unchecked")
+	public List<T> getListOrderById(){
+		return (List<T>) baseDao.getSession().createCriteria(clazz).list();
+	}
+	@SuppressWarnings("unchecked")
 	public List<T> getAll(){
-		return baseDao.getAll();
+		Object obj = baseDao.getSession()
+				.createQuery("from "+clazz.getSimpleName()+" order by id desc")
+				.setCacheable(true).list();
+		if(obj!=null){
+			return (List<T>)obj;
+		}else{
+			return new ArrayList<T>();
+		}
 	}
-	public List<T> getAll(Class<?> cls){
-		return baseDao.getAll(cls);
+	public List<T> list(Class<T> cls){
+		return baseDao.list(cls);
 	}
-	public List<T> getAll(String entityName){
-		return baseDao.getAll(entityName);
+	public List<T> list(String entityName){
+		return baseDao.list(entityName);
 	}
 	public T load(String id){
 		return baseDao.load(clazz, id);

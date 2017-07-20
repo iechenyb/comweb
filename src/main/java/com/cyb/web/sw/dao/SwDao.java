@@ -10,6 +10,6 @@ import com.cyb.web.sw.po.Sw;
 @Repository("swDao")
 public class SwDao extends HibernateBaseDao<Sw> {
   public List<Sw> getList(){
-	return this.getAll();
+	return this.list();
   }
 }

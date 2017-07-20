@@ -20,7 +20,7 @@ public class XssService extends HibernateBaseService<Customer>{
 	XssDao xssDao;
 	
 	public List<Customer> getList(){
-		return xssDao.getAll();
+		return xssDao.list();
 	}
 	public List<?> query(String name ,String type){
 		if("jdbc".equals(type)){

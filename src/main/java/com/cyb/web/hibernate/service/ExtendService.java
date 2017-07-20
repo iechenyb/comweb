@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
  *创建时间: 2017年7月20日
  */
 
+import com.cyb.web.base.dao.HibernateBaseDao3;
+import com.cyb.web.base.po.BasePo;
 import com.cyb.web.hibernate.dao.ExtendDao;
 @Service
-public class ExtendService {
+public class ExtendService extends HibernateBaseDao3<BasePo> {
 	Log log = LogFactory.getLog(ExtendService.class);
 	@Autowired
 	ExtendDao dao;

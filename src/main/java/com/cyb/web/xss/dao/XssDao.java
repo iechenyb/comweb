@@ -15,7 +15,7 @@ import com.cyb.web.xtgl.po.Menu;
 @Repository("xssDao")
 public class XssDao extends HibernateBaseDao<Customer> {
   public List<Customer> getList(){
-	return this.getAll();
+	return this.list();
   }
   //拼接sql，不安全
   public List<Map<String,Object>> getList(String name){

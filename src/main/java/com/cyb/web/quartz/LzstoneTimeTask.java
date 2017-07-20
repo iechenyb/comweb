@@ -14,7 +14,7 @@ public class LzstoneTimeTask implements Job{
 	SwDao swDao;
     public void execute(JobExecutionContext context) throws JobExecutionException{
     	Thread.currentThread().setName(context.getTrigger().getFullName());
-    	System.out.println("定时器使用springbean:"+swDao.getAll());
+    	System.out.println("定时器使用springbean:"+swDao.list());
     	//执行的定时器任务
     	System.out.println(Thread.currentThread().getName()+",hello "+count++);
     }
