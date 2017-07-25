@@ -49,6 +49,10 @@ public class StockInitTest extends BaseUtils{
 			String value = dao.lIndex(base+"code:sh", i);
 			System.out.println(value);
 		}
+		for(int i=0;i<dao.lLen(base+"code:sz");i++){
+			String value = dao.lIndex(base+"code:sz", i);
+			System.out.println(value);
+		}
 	}
 	
 	@Test

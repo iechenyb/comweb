@@ -1,13 +1,13 @@
 package com.cyb.web.quartz;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.RecursiveTask;
 
@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSON;
 import com.app.stock.DrawCodesUtils;
 import com.app.stock.RealQutoes;
 import com.app.stock.Stock;
+import com.cyb.date.DateUtil;
 import com.cyb.page.Pagination;
 import com.cyb.web.redis.dao.RedisDao;
 
@@ -38,18 +39,16 @@ public class TestJob {
 	public void method1() throws IOException {
 		try {
 			exeTaskByPagSync();
+			//exeTaskByPage();
 			/* ForkJoinPool forkjoinPool = new ForkJoinPool();
 			long totalcount = dao.lLen(base + "code:sh");
 	        //生成一个计算任务，计算1+2+3+4
 			PageTaskForkJoin task = new PageTaskForkJoin(0, totalcount,dao);
 	        //执行一个任务
 	        forkjoinPool.submit(task);*/
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+		} 
 	}
 
 	/**
@@ -86,32 +85,39 @@ public class TestJob {
 	 */
 	public void exeTaskByPage() {
 		Callable<Integer> callable = new Callable<Integer>() {
-			public Integer call() throws Exception {
-				log.info("开始抓取分钟行情...");
-				int pageSize = 850;
-				long totalcount = dao.lLen(base + "code:sh");
-				StringBuffer sb = new StringBuffer("");
-				Pagination p = new Pagination(1, pageSize, totalcount);
-				for (int i = 1; i <= p.getPageCount(); i++) {
-					Pagination p_ = new Pagination(i, pageSize, totalcount);
-					for (int j = p_.getOffset(); j <= (p_.getPageSize() * i - 1) - 1; j++) {
-						String codeStr = dao.lIndex(base + "code:sh", j);
-						Stock s = JSON.parseObject(codeStr, Stock.class);
-						sb.append(s.getCode_() + ",");
+			public Integer call()  {
+				try{
+					log.info("开始抓取分钟行情...");
+					int pageSize = 850;
+					long totalcount = dao.lLen(base + "code:sh");
+					StringBuffer sb = new StringBuffer("");
+					Pagination p = new Pagination(1, pageSize, totalcount);
+					for (int i = 1; i <= p.getPageCount(); i++) {
+						Pagination p_ = new Pagination(i, pageSize, totalcount);
+						for (int j = p_.getOffset(); j <= (p_.getPageSize() * i - 1); j++) {
+							try{
+								String codeStr = dao.lIndex(base + "code:sh", j);
+							    Stock s = JSON.parseObject(codeStr, Stock.class);
+								sb.append(s.getCode_() + ",");
+							}catch(Exception e){}
+						}
+						log.info(p_.getOffset()+"->"+(p_.getPageSize() * i - 1)+",交易所：sh,总页数:"+p.getPageCount()+",当前页："+i);
+						List<RealQutoes> rqs = DrawCodesUtils.getRealQutoesBatch(sb.toString());
+						for (RealQutoes rq : rqs) {
+							dao.lpush(base + "minuteQutoes:" + rq.getCode(), JSONObject.fromObject(rq).toString());
+						}
+						sb.delete(0, sb.length());
 					}
-					log.info(p_.getOffset()+"->"+(p_.getPageSize() * i - 1)+",交易所：sh,总页数:"+p_.getPageCount()+",当前页："+i);
-					List<RealQutoes> rqs = DrawCodesUtils.getRealQutoesBatch(sb.toString());
-					for (RealQutoes rq : rqs) {
-						dao.lpush(base + "minuteQutoes:" + rq.getCode(), JSONObject.fromObject(rq).toString());
-					}
-					sb.delete(0, sb.length());
+					log.info("抓取分钟行情完成...");
+				}catch(Exception e){
+					e.printStackTrace();
 				}
-				log.info("抓取分钟行情完成...");
 				return 1;
 			}
 		};
 		FutureTask<Integer> future = new FutureTask<Integer>(callable);
-		new Thread(future).start();
+		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(2); 
+		fixedThreadPool.submit(future);
 	}
 
 	/**
@@ -127,28 +133,32 @@ public class TestJob {
 		log.info("开始抓取分钟行情...");
 		int pageSize = 850;
 		long totalcount = dao.lLen(base + "code:sh");
-		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(10); 
+		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(20); 
+		List<FutureTask<Integer>> lsTask = new ArrayList<FutureTask<Integer>>();
 		Pagination p = new Pagination(1, pageSize, totalcount);
-		for (int i = 1; i <= p.getPageCount()+1; ++i) {
-			log.info(i+","+p.getPageCount());
+		for (int i = 1; i <= p.getPageCount(); ++i) {
 			Pagination p_ = new Pagination(i, pageSize, totalcount);
-			FutureTask<Integer> future = new FutureTask<Integer>(new PageTask(p_, dao,"sh"));
-			/*new Thread(future).start();
-			future.get();*/
+			final FutureTask<Integer> future = new FutureTask<Integer>(new PageTaskCallable(p_, dao,"sh"));
+			//new Thread(future).start();
+			lsTask.add(future);
 			fixedThreadPool.execute(future);
+			//new Thread(new PageTask(p_, dao,"sh")).start();*/
 		}
-		Thread.sleep(10);
 		totalcount = dao.lLen(base + "code:sz");
 		Pagination psz = new Pagination(1, pageSize, totalcount);
-		for (int i = 1; i <= psz.getPageCount()+1; ++i) {
-			log.info(i+","+psz.getPageCount());
+		for (int i = 1; i <= psz.getPageCount(); ++i) {
+			//log.info(i+","+psz.getPageCount());
 			Pagination p_ = new Pagination(i, pageSize, totalcount);
-			FutureTask<Integer> future = new FutureTask<Integer>(new PageTask(p_, dao,"sz"));
+			final FutureTask<Integer> future = new FutureTask<Integer>(new PageTaskCallable(p_, dao,"sz"));
+			//new Thread(future).start();
+			lsTask.add(future);
 			fixedThreadPool.execute(future);
 		}
 		//fixedThreadPool.shutdown();
+		for(FutureTask<Integer> t:lsTask){
+			t.get();
+		}
 		log.info("抓取分钟行情完成...");
-		Thread.sleep(10);
 	}
 }
 class PageTaskForkJoin extends RecursiveTask<Integer>{
@@ -184,20 +194,56 @@ class PageTaskForkJoin extends RecursiveTask<Integer>{
 		return 1;
 	}
 }
-class PageTask implements Callable<Integer> {
-	Log log = LogFactory.getLog(PageTask.class);
+class PageTaskCallable implements Callable<Integer> {
+	Log log = LogFactory.getLog(PageTaskCallable.class);
 	Pagination p_;
 	RedisDao dao;
 	String ex ;
 	String base = "com.cyb:";
 
-	public PageTask(Pagination p_, RedisDao dao,String ex) {
+	public PageTaskCallable(Pagination p_, RedisDao dao,String ex) {
+		//log.info(p_.getClass()+","+p_.getPageCount());
 		this.p_ = p_;
 		this.dao = dao;
 		this.ex = ex;
 	}
 
 	public Integer call() throws Exception {
+		StringBuffer sb = new StringBuffer("");
+		for (int j = p_.getOffset(); j <= (p_.getPageSize() * p_.getCurrentPage() - 1); j++) {
+			try{
+				String codeStr = dao.lIndex(base + "code:"+ex, j);
+				Stock s = JSON.parseObject(codeStr, Stock.class);
+				String code = s.getExchange() + s.getCode();
+				sb.append(code + ",");
+			}catch(Exception e){}
+		}
+		//log.info(p_.getRecordCount()+","+p_.getOffset()+"->"+(p_.getPageSize() * p_.getCurrentPage() - 1)+",交易所："+ex+",总页数:"+p_.getPageCount()+",当前页："+p_.getCurrentPage());
+		List<RealQutoes> rqs = DrawCodesUtils.getRealQutoesBatch(sb.toString());
+		for (RealQutoes rq : rqs) {
+			//dao.lpush(base + "minuteQutoesList:" + rq.getCode(), JSONObject.fromObject(rq).toString());
+			dao.hSet(base + "minuteQutoesHash:" + rq.getCode(), DateUtil.format(new Date(), "HH:mm"), JSONObject.fromObject(rq).toString());
+			sb.delete(0, sb.length());
+			
+		}
+		return 1;
+	}
+}
+
+class PageTaskRunable implements Runnable {
+	Log log = LogFactory.getLog(PageTaskRunable.class);
+	Pagination p_;
+	RedisDao dao;
+	String ex ;
+	String base = "com.cyb:";
+
+	public PageTaskRunable(Pagination p_, RedisDao dao,String ex) {
+		this.p_ = p_;
+		this.dao = dao;
+		this.ex = ex;
+	}
+
+	public void run() {
 		StringBuffer sb = new StringBuffer("");
 		for (int j = p_.getOffset(); j <= (p_.getPageSize() * p_.getCurrentPage() - 1) - 1; j++) {
 			String codeStr = dao.lIndex(base + "code:"+ex, j);
@@ -206,11 +252,16 @@ class PageTask implements Callable<Integer> {
 			sb.append(code + ",");
 		}
 		log.info(p_.getRecordCount()+","+p_.getOffset()+"->"+(p_.getPageSize() * p_.getCurrentPage() - 1)+",交易所：sh,总页数:"+p_.getPageCount()+",当前页："+p_.getCurrentPage());
-		List<RealQutoes> rqs = DrawCodesUtils.getRealQutoesBatch(sb.toString());
-		for (RealQutoes rq : rqs) {
-			dao.lpush(base + "minuteQutoes:" + rq.getCode(), JSONObject.fromObject(rq).toString());
-			sb.delete(0, sb.length());
+		List<RealQutoes> rqs;
+		try {
+			rqs = DrawCodesUtils.getRealQutoesBatch(sb.toString());
+			for (RealQutoes rq : rqs) {
+				dao.lpush(base + "minuteQutoes:" + rq.getCode(), JSONObject.fromObject(rq).toString());
+				sb.delete(0, sb.length());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return 1;
+		
 	}
 }
