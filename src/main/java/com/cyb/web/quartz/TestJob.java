@@ -219,12 +219,16 @@ class PageTaskCallable implements Callable<Integer> {
 			}catch(Exception e){}
 		}
 		//log.info(p_.getRecordCount()+","+p_.getOffset()+"->"+(p_.getPageSize() * p_.getCurrentPage() - 1)+",交易所："+ex+",总页数:"+p_.getPageCount()+",当前页："+p_.getCurrentPage());
-		List<RealQutoes> rqs = DrawCodesUtils.getRealQutoesBatch(sb.toString());
-		for (RealQutoes rq : rqs) {
-			//dao.lpush(base + "minuteQutoesList:" + rq.getCode(), JSONObject.fromObject(rq).toString());
-			dao.hSet(base + "minuteQutoesHash:" + rq.getCode(), DateUtil.format(new Date(), "HH:mm"), JSONObject.fromObject(rq).toString());
-			sb.delete(0, sb.length());
-			
+		try{
+			List<RealQutoes> rqs = DrawCodesUtils.getRealQutoesBatch(sb.toString());
+			for (RealQutoes rq : rqs) {
+				//dao.lpush(base + "minuteQutoesList:" + rq.getCode(), JSONObject.fromObject(rq).toString());
+				dao.hSet(base + "minuteQutoesHash:" + rq.getCode(), DateUtil.format(new Date(), "HH:mm"), JSONObject.fromObject(rq).toString());
+				sb.delete(0, sb.length());
+				
+			}
+		}catch(Exception e){
+			log.info("网络数据获取异常！"+e.toString());
 		}
 		return 1;
 	}
