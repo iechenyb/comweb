@@ -25,7 +25,8 @@ import javax.persistence.metamodel.EntityType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
+
 /**
  *作者 : iechenyb<br>
  *类描述: 说点啥<br>
@@ -41,7 +42,7 @@ public class Query implements Serializable {
 	        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysqlJPA");
 	        EntityManager entityManager = factory.createEntityManager();
 	        Query query = Query.forClass(User.class, entityManager);
-	        User user = new User();
+	        User user = new User(); 
 	        // 保存
 	        query.insert(user);
 	        // 更新
