@@ -114,10 +114,30 @@ function isNumber(_str,name){
     var tmp_str = _str;
     var pattern = /^[0-9]+$/;
     if(!pattern.test(tmp_str)){
-	   alert(name+"必须为数字！")
+	   alert(name+"必须为整数！")
 	   return false;
     }
     return true ;
+}
+/*
+ * 判断是否浮点数
+ * @param oNum
+ * @return true-符合要求,false-不符合
+ */
+function isFloat(oNum,name){
+	 var temp = true;
+	 if(!oNum) temp = false;
+	 var strP=/^\d+(\.\d+)?$/;
+	 if(!strP.test(oNum)) temp = false;
+	 try{
+	  if(parseFloat(oNum)!=oNum) temp = false;
+	 }catch(ex){
+	   temp = false;
+	 }
+	 if(!temp){
+		 alert(name+"为小数或者整数！");
+	 }
+	 return temp;
 }
 /*
  * 判断图片类型
@@ -126,7 +146,7 @@ function isNumber(_str,name){
  * type="file"的javascript对象
  * @return true-符合要求,false-不符合
  */
-function checkImgType(value,name){
+function isPicture(value,name){
 	if (value == "") {
 		alert("请上传图片");
 		return false;
@@ -173,6 +193,130 @@ function isEmptyValue(value){
 	if(value!=null&&value!=''&&value!='undefined'){
 		return false;
 	}else{
+		return true;
+	}
+}
+//检验文件格式type=pdf|rar|zip|jpg|
+function checkFileType(value,type,name){
+	var suffix = value.substr(value.lastIndexOf(".")).toLowerCase().trim();
+	if(type.indexOf(suffix+"|")!=-1){ return true;}else{ alert(name+"格式必须是"+type);return false;}
+}
+function isEmptyValue(value){
+	if(value!=null&&value!=''&&value!='undefined'&value!=undefined){
+		return false;
+	}else{
+		return true;
+	}
+}
+/**
+*验证营业执照是否合法：营业执照长度须为15位数字，前14位为顺序码，
+*最后一位为根据GB/T 17710 1999(ISO 7064:1993)的混合系统校验位生成算法
+*计算得出。此方法即是根据此算法来验证最后一位校验位是否政正确。
+*二、顺序码是7-14位，顺序码指工商行政管理机关在其管辖范围内按照先
+* 后次序为申请登记注册的市场主体所分配的顺序号。为了便于管理和
+* 赋码，8位顺序码中的第1位（自左至右）采用以下分配规则：
+*　　 1）内资各类企业使用“0”、“1”、“2”、“3”；
+*　　 2）外资企业使用“4”、“5”；
+*　　 3）个体工商户使用“6”、“7”、“8”、“9”。
+**/
+function isValidBusCode(busCode,name){
+	var ret=false;
+	if(busCode.length==15){
+		var sum=0;
+		var s=[];
+		var p=[];
+		var a=[];
+		var m=10;
+		p[0]=m;
+		for(var i=0;i<busCode.length;i++){
+			a[i]=parseInt(busCode.substring(i,i+1),m);
+			s[i]=(p[i]%(m+1))+a[i];
+			if(0==s[i]%m){
+				p[i+1]=10*2;
+			}else{
+				p[i+1]=(s[i]%m)*2;
+			}
+		}
+		if(1==(s[14]%m)){
+			//营业执照编号正确!
+			ret=true;
+		}else{
+			//营业执照编号错误!
+			ret=false;
+			alert(name+"格式不正确!");
+		}
+	}else{
+		alert(name+"必须是15位数字！");
+		ret = false;
+	}
+	return ret;
+}
+function checkorgcode(orgcode,name){
+	if(orgcode.trim().length!=9){
+		alert(name+"长度必须为9位.");
+		return false;
+    }
+	var patrn=/^[0-9A-Z]+$/;
+	if(patrn.test(orgcode)==false){
+		alert(name+"只可为数字或大写拉丁字母.");
+		return false;
+	}
+	var lastpatrn=/^[0-9X]+$/;
+	var checkcode=orgcode.substring(8,9);
+	if(lastpatrn.test(checkcode)==false){
+		alert(name+"最后一位只可为数字或大写拉丁字母:X");
+		return false;
+	}
+	var ancode;
+	var ancodevalue;
+	var total=0;
+	for(var i=0;i<orgcode.length-1;i++){
+		ancode=orgcode.substring(i,i+1);
+		ancodevalue=findvalueinorgcodemapping(ancode);
+		total=total+ancodevalue*weightedfactors[i];
+	}
+	var logiccheckcode=11-total%11;
+	if(logiccheckcode==10) logiccheckcode='X';
+	if(logiccheckcode==11) logiccheckcode='0';
+	if(checkcode != logiccheckcode){
+		alert(name+"格式错误.最后一位校验码应为:"+logiccheckcode);
+		return false;
+	}else{
+		return true;
+	}
+}
+function CheckSocialCreditCode(Code,name) {
+	var patrn = /^[0-9A-Z]+$/;
+	// 18位校验及大写校验
+	if ((Code.length != 18) || (patrn.test(Code) == false)) {
+		alert(name+"长度必须是18位，由数字和大写字母构成！") ;
+		return false;
+	} else {
+		var Ancode;// 统一社会信用代码的每一个值
+		var Ancodevalue;// 统一社会信用代码每一个值的权重
+		var total = 0;
+		var weightedfactors = [ 1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8,
+				24, 10, 30, 28 ];// 加权因子
+		var str = '0123456789ABCDEFGHJKLMNPQRTUWXY';
+		// 不用I、O、S、V、Z
+		for (var i = 0; i < Code.length - 1; i++) {
+			Ancode = Code.substring(i, i + 1);
+			Ancodevalue = str.indexOf(Ancode);
+			total = total + Ancodevalue * weightedfactors[i];
+			// 权重与加权因子相乘之和
+		}
+		var logiccheckcode = 31 - total % 31;
+		if (logiccheckcode == 31) {
+			logiccheckcode = 0;
+		}
+		var Str = "0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,J,K,L,M,N,P,Q,R,T,U,W,X,Y";
+		var Array_Str = Str.split(',');
+		logiccheckcode = Array_Str[logiccheckcode];
+		var checkcode = Code.substring(17, 18);
+		if (logiccheckcode != checkcode) {
+			alert(name+"验证无效！");
+			return false;
+		}
 		return true;
 	}
 }

@@ -42,6 +42,10 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	<!-- <servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>*.json</url-pattern>
+	</servlet-mapping> -->
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -113,5 +117,6 @@
 	   <url-pattern>*.woff2</url-pattern> 
 	   <url-pattern>*.swf</url-pattern> 
 	   <url-pattern>*.html</url-pattern> 
+	   <url-pattern>*.json</url-pattern> 
 	 </servlet-mapping>
 </web-app>

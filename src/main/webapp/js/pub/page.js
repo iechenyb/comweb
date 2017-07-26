@@ -96,7 +96,6 @@ function calPages(data,page){
 	var pages = Math.ceil(data.length /PAGESIZE);
 	return pages;
 }
-//<a href="javascript:" data-page="2">最后一页</a>
 /**
  * cur=3 pages=3 
  */
@@ -110,3 +109,13 @@ function toPage(page){
 	}
 	$("a[data-page="+index+"]").click();
 }
+/**
+ * 设置当前页面
+ * @param pageNum
+ */
+function setCurr(pageNum){
+	pager.setCurr(pageNum,
+	 function(){
+	    console.log("topage"+pageNum);
+	 });
+ }
