@@ -14,20 +14,21 @@
 </head>
 <body ng-controller="controller">
 	  <input type="hidden"  id='path' value="<%=request.getAttribute("basePath")%>"></input>
-	  
 	  <div class="am-g am-g-fixed" style="text-align:center">
-	     <div class="am-u-sm-12">
-		  	<input type="text" id='code' placeholder="输入股票代码" style="width:50%;float:left;" class="am-form-field am-radius" ng-model='codeName' value="sh600868"/>
-		  	<button  type="button"  class="am-btn am-btn-primary"  style="width:20%;float:left;" data-am-modal="{target: '#my-popup'}">选择股票</button>
-		  	<button ng-click='load()' class="am-form-field am-radius" style="width:30%" >查询</button>
-	 	 </div>
+	     <div class="am-u-sm-4"><input type="text" id='code' placeholder="输入股票代码" style="width:100%;" class="am-form-field am-radius" ng-model='codeName' value="sh600868"/> </div>
+	 	  <div class="am-u-sm-4"><button  type="button"  class="am-btn am-btn-primary"  style="width:100%;" data-am-modal="{target: '#my-popup'}">选择股票</button></div>
+	 	   <div class="am-u-sm-4"><button ng-click='load()' class="am-form-field am-radius" style="width:100%" >查询</button></div>
 	  </div> 
-	  <div class="am-g am-g-fixed">
+	  <hr>
+	  <div class="am-g">
 	      <div id="lineChart" class="am-u-sm-6" style="height:400px;width:50%;"></div>
 	      <div id="lineChart1" class="am-u-sm-6" style="height:400px;width:50%;"></div>
 	  </div>
+	  <div class="am-g">
+	   <div id="lineChart1" class="am-u-sm-12" style="height:400px;width:50%;"></div>
+	  </div>
 	  
-<div class="am-popup" id="my-popup" style="top:0;left:0;width:100%;margin:0;height:100%;">
+<div class="am-popup" id="my-popup" style="top:10%;left:10%;width:80%;margin:0;height:80%;">
   <div class="am-popup-inner">
     <div class="am-popup-hd">
       <h4 class="am-popup-title">选择股票</h4>
@@ -37,13 +38,14 @@
     <div class="am-popup-bd">
        <div class="am-g">
         <div class="am-u-sm-12" style="text-align:center;"><b>上海证券交易所</b></div>
-	      <div class="am-u-sm-2" ng-repeat="vo in shs">
+	    <div class="am-u-sm-2" ng-repeat="vo in shs">
 		      <div class="am-radio" ng-click="setCode(vo);">
 			      <label>
 			        <input type="radio" name="doc-radio-1" >{{vo.name}}
 			      </label>
 	           </div>
-	      </div>
+	    </div>
+	    <div class="am-u-sm-12" style="text-align:center;"><b><a ng-click="pre('sh')">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ng-click="next('sh')">下一页</a></b></div>
 	  </div>
 	   <div class="am-g">
 	     <div class="am-u-sm-12" style="text-align:center;"><b>深圳证券交易所</b></div>
@@ -54,6 +56,7 @@
 			      </label>
 	           </div>
 	      </div>
+	      <div class="am-u-sm-12" style="text-align:center;"><b><a ng-click="pre('sz')">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ng-click="next('sz')">下一页</a></b></div>
 	  </div>
     </div>
   </div>

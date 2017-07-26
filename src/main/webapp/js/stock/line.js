@@ -155,19 +155,46 @@ var basePath;
 function main($scope,$q,$http) {
 	basePath = $("#path").val();
 	var lineChart = echarts.init($("#lineChart")[0]);
-	drawChart(ajaxGet(basePath+"restfull/stock/prices/line.do?code=sh000001"));
-	var data = ajaxGet(basePath+"restfull/stock/codes.do");
-	$scope.shs=data.sh;
-	$scope.szs=data.sz;
+	drawChart(ajaxGet(basePath+"restfull/stock/prices/line.json?code=sh000001"));
+	var codessh = ajaxGet(basePath+"restfull/stock/codes.do?cur=1&type=sh");
+	$scope.name="上证指数";
+	$scope.shs=codessh.sh;
+	var codessz = ajaxGet(basePath+"restfull/stock/codes.do?cur=1&type=sz");
+	$scope.szs=codessz.sz;
 	$scope.setCode=function(vo){
-		drawChart(ajaxGet(basePath+"restfull/stock/prices/line.do?code="+vo.code_));
+		$scope.codeName=vo.name+"("+vo.code_+")";
+		$scope.code_=vo.code_;
+		drawChart(ajaxGet(basePath+"restfull/stock/prices/line.json?code="+vo.code_));
+	}
+	$scope.next=function(type){
+		if(type=='sh'){
+			codessh.page.currentPage = codessh.page.currentPage+1;
+			codessh = ajaxGet(basePath+"restfull/stock/codes.do?cur="+codessh.page.currentPage+"&type="+type);
+			$scope.shs=codessh.sh;
+		}else{
+			codessz.page.currentPage = codessz.page.currentPage+1;
+			codessz = ajaxGet(basePath+"restfull/stock/codes.do?cur="+codessz.page.currentPage+"&type="+type);
+			$scope.szs=codessz.sz;
+		}
+	}
+	$scope.pre=function(type){
+		if(type=='sh'){
+			codessh.page.currentPage = codessh.page.currentPage-1;
+			codessh = ajaxGet(basePath+"restfull/stock/codes.do?cur="+codessh.page.currentPage+"&type="+type);
+			$scope.shs=codessh.sh;
+		}else{
+			codessz.page.currentPage = codessz.page.currentPage-1;
+			codessz = ajaxGet(basePath+"restfull/stock/codes.do?cur="+codessz.page.currentPage+"&type="+type);
+			$scope.szs=codessz.sz;
+		}
 	}
 	$scope.load=function(){
-		drawChart(ajaxGet(basePath+"restfull/stock/prices/line.do?code=sh000001"));
+		drawChart(ajaxGet(basePath+"restfull/stock/prices/line.do?code="+$scope.code_));
 	}
 }
 
 function drawChart(data){	
+	  if(data.zt=="0"){ alert(data.msg); return false;}
 	  var myChart = echarts.init($("#lineChart")[0]);
 	  optionLine.series[0].data=data.y;
 	  optionLine.xAxis[0].data=data.x;
@@ -178,6 +205,8 @@ function drawChart(data){
 	      [{name: '昨日收盘价',value: data.close, xAxis: '09:30', yAxis: data.close},{xAxis:'15:00',yAxis: data.close}]
 	    ]
 	  };
+	  optionLine.title.text=data.name;
+	  optionLine.title.subtext="股票代码:"+data.code_;
 	  optionLine.series[0].markLine = aveLine;
 	  
       myChart.setOption(optionLine);
@@ -186,6 +215,8 @@ function drawChart(data){
 	  optionLine1.xAxis[0].data=data.x;
 	  optionLine1.yAxis[0].max = Number(data.max+0.1).toFixed(4);
 	  optionLine1.yAxis[0].min = Number(data.min-0.1).toFixed(4);
+	  optionLine1.title.text=data.name;
+	  optionLine1.title.subtext="股票代码:"+data.code_;
 	  var aveLine1 = {
 	    data : [
 	      [{name: '昨日收盘价',value: data.close, xAxis: '09:30', yAxis: data.close},{xAxis:'15:00',yAxis: data.close}]
