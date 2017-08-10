@@ -1499,7 +1499,8 @@ SwaggerClient.prototype.buildFromSpec = function (response) {
 
   this.apis = {};
   this.apisArray = [];
-  this.basePath = response.basePath+'/rest/' || '';
+  //rest/
+  this.basePath = response.basePath+'/' || '';
   this.consumes = response.consumes;
   this.host = response.host || '';
   this.info = response.info || {};

@@ -28,7 +28,7 @@ import com.cyb.web.stock.utils.QutoesUtils;
 
 import net.sf.json.JSONObject;
 
-@Component
+//@Component
 public class StockJob {
 	String base = "com.cyb:";
 	Log log = LogFactory.getLog(StockJob.class);

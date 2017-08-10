@@ -8,12 +8,19 @@ import net.sf.json.JSONArray;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cyb.web.base.controller.BaseController;
 import com.cyb.web.sw.po.Sw;
 import com.cyb.web.sw.service.SwService;
-
+import com.mangofactory.swagger.plugin.EnableSwagger;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
+@EnableSwagger
 @Controller
 @RequestMapping("sw")
 public class SwController extends BaseController{
@@ -55,4 +62,16 @@ public class SwController extends BaseController{
 		}
 		return msgMap;
 	}
+	@RequestMapping(value="/get",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value = "根据id获取用户对象", httpMethod = "GET", 
+	notes = "随便说点啥")
+	@ApiResponses(value = {  
+	          @ApiResponse(code = 400, message = "No Name Provided")  
+	 })
+	public String get(
+			@RequestParam(value = "id", required = true) @ApiParam(value = "唯一id") Integer id  ){
+        System.out.println("get"+id);
+        return ("hello:"+id);
+    }
 }
