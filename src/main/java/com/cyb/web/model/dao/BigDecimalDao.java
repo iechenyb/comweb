@@ -13,4 +13,5 @@ import com.cyb.web.model.po.MyBigDecimal;
 @Repository
 public class BigDecimalDao extends HibernateBaseDao<MyBigDecimal>{
 	Log log = LogFactory.getLog(BigDecimalDao.class);
+	
 }
