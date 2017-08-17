@@ -36,6 +36,6 @@ public class QueryTimeTjTest {
 			service.getAll();
 		}
 		e = System.currentTimeMillis();
-		log.info("用时："+(e-s)/1000.0+"s");
+		log.info("用时："+(e-s)/1000.0+"s");//182s
 	}
 }
