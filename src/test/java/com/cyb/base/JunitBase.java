@@ -15,6 +15,8 @@ public class JunitBase {
 		ac = new ClassPathXmlApplicationContext(
 						"classpath:applicationContext.xml",
 						"classpath:applicationContext-job.xml"
+						,
+						"classpath:applicationContext-redis.xml"
 			 );// 从classpath中加载
 	}
 }

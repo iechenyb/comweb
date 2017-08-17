@@ -33,6 +33,10 @@ public class StandardTest extends JunitBase {
 		service2 = (Model2Service) this.ac.getBean("model2Service");
 	}
 	@org.junit.Test
+	public void start(){
+		
+	}
+	@org.junit.Test
 	public void save(){
 		Model model = new Model();
 		model.setCzsj(DateUtil.date2long14(new Date()).toString());
