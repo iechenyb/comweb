@@ -13,6 +13,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cyb.date.DateUtil;
@@ -22,6 +24,7 @@ import com.cyb.web.xzzx.po.SysFile;
 import com.cyb.web.xzzx.service.XzzxService;
 import com.cyb.web.xzzx.utils.ImageBase64;
 import com.cyb.web.xzzx.vo.FileVo;
+import com.wordnik.swagger.annotations.ApiParam;
 
 import net.sf.json.JSONArray;
 /**
@@ -146,6 +149,30 @@ public class XzzxController extends BaseController{
 			com.cyb.file.FileUtils.genFileDir(filePath);
 			filePath=filePath+f.getFjname();
 			String downName = f.getFjname();
+			File file = new File(filePath);
+			downloadBase(response,downName,file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	@RequestMapping(value="downtest",method=RequestMethod.GET)
+	public  void downLoadFileTest(HttpServletResponse response,@RequestParam(value = "fileName", required = true) @ApiParam(value = "下载的文件名") String fileName) {
+		OutputStream out = null;
+		try {
+			String filePath = Configuration.get("uploadPath")+Configuration.get("tmp");
+			com.cyb.file.FileUtils.genFileDir(filePath);
+			filePath=filePath+fileName;
+			log.info("文件下载路径:"+filePath);
+			String downName = fileName;
 			File file = new File(filePath);
 			downloadBase(response,downName,file);
 		} catch (Exception e) {
