@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+    http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd  
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    
+    http://www.springframework.org/schema/task     
+    http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="com.cyb.web.beanlive">
+	   <!-- 父容器  不扫描子容器controller -->
+	   <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
+	</context:component-scan> 
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+    <bean id="beanPostProcessor" class="com.cyb.web.beanlive.MyBeanPostProcessor">
+    </bean>
+
+    <bean id="instantiationAwareBeanPostProcessor" class="com.cyb.web.beanlive.MyInstantiationAwareBeanPostProcessor">
+    </bean>
+
+    <bean id="beanFactoryPostProcessor" class="com.cyb.web.beanlive.MyBeanFactoryPostProcessor">
+    </bean>
+    
+    <bean id="person" class="com.cyb.web.beanlive.Person" init-method="myInit"
+        destroy-method="myDestory" scope="singleton" p:name="张三" p:address="广州"
+        p:phone="159000" />
+        <!--
+        <bean id="inheritedTestBean" abstract="true"
+        class="org.springframework.beans.TestBean">
+		    <property name="name" value="parent"/>
+		    <property name="age" value="1"/>
+		 </bean>
+
+	     <bean id="inheritsWithDifferentClass"
+	        class="org.springframework.beans.DerivedTestBean"
+	        parent="inheritedTestBean" init-method="initialize">
+	         <property name="name" value="override"/>
+	    </bean> -->
+</beans>

@@ -7,20 +7,17 @@ import org.junit.Test;
 
 import com.cyb.base.BaseUtils;
 import com.cyb.web.inter.po.Car;
-/**
- *作者 : iechenyb<br>
- *类描述: 说点啥<br>
- *创建时间: 2017年8月22日
- */
 import com.cyb.web.inter.service.ICarService;
-public class InterfaceIOC extends BaseUtils {
+
+public class InterfaceIOC extends BaseUtils{
 	Log log = LogFactory.getLog(InterfaceIOC.class);
 	
 	@Resource(name="bmwCarServiceImpl")
 	ICarService<Car> service;
-	
+	//测试接口注入
 	@Test
-	public void test(){
+	public void testInter(){
 		service.run();
 	}
+	
 }
