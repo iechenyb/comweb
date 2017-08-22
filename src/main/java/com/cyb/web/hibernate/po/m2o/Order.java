@@ -21,7 +21,7 @@ public class Order implements Serializable{
     private static final long serialVersionUID = 1L;  
     public Order(){}  
   
-    public Order(String orderNumber,Customer customer){  
+    public Order(String orderNumber,Customer1 customer){  
         this.orderNumber =orderNumber;  
         this.customer=customer;  
     }  
@@ -35,7 +35,7 @@ public class Order implements Serializable{
     //订单表中存在顾客的id信息，多对一  
     @ManyToOne(fetch = FetchType.EAGER)  
     @JoinColumn(name="CUSTOMER_ID", nullable = false)  
-    private Customer customer;  
+    private Customer1 customer;  
   
     public Long getId() {  
         return id;  
@@ -53,11 +53,11 @@ public class Order implements Serializable{
         this.orderNumber = orderNumber;  
     }  
   
-    public Customer getCustomer() {  
+    public Customer1 getCustomer1() {  
         return customer;  
     }  
   
-    public void setCustomer(Customer customer) {  
+    public void setCustomer(Customer1 customer) {  
         this.customer = customer;  
     }  
 }  

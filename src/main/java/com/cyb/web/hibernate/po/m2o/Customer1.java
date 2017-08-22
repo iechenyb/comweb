@@ -15,12 +15,12 @@ import javax.persistence.Table;
  */
 @Entity  
 @Table  
-public class Customer implements Serializable{  
+public class Customer1 implements Serializable{  
       
     private static final long serialVersionUID = 1L;  
   
-    public Customer(){}  
-    public Customer(String name){  
+    public Customer1(){}  
+    public Customer1(String name){  
         this.name=name;  
     }  
     @Id  

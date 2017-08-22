@@ -71,5 +71,14 @@ public class HQLQuery extends BaseUtils{
 			Clss cls = (Clss)s2[1];
 			log.info(s.getSchool()+","+cls.getClsName());
 		}
+		
 	}
+	@Test
+	public void testPackagesToScanHql(){
+		String hql="from Db2Bean";
+		dao.testHql(hql);
+		hql ="from DbBean";
+		dao.testHql(hql);
+	}
+	
 }
