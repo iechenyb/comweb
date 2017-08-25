@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cyb.UUIDUtils;
@@ -38,7 +39,7 @@ public class StandardTest extends JunitBase {
 	}
 	@org.junit.Test
 	public void save(){
-		Model model = new Model();
+		/*Model model = new Model();
 		model.setCzsj(DateUtil.date2long14(new Date()).toString());
 		service.save(model);
 		
@@ -61,7 +62,7 @@ public class StandardTest extends JunitBase {
 		model4.setId(uuid2);
 		System.out.println("手动设置id:"+uuid2);
 		model4.setCzsj(DateUtil.date2long14(new Date()).toString());
-		service2.save(model4);
+		service2.save(model4);*/
 	}
 	@After
 	public void show(){
@@ -76,5 +77,12 @@ public class StandardTest extends JunitBase {
 			System.out.println(model.getId()+","+model.getCzsj());
 		}
 		
+	}
+	
+	@Test//测试工场模式是否为默认单例
+	public void testSingle(){
+		ModelService service = (ModelService) this.ac.getBean("modelService");
+		ModelService service2 = (ModelService) this.ac.getBean("modelService");
+		log.info(service==service2);
 	}
 }
