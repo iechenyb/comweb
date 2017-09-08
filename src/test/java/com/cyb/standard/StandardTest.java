@@ -13,7 +13,7 @@ import com.cyb.UUIDUtils;
 import com.cyb.base.JunitBase;
 import com.cyb.date.DateUtil;
 import com.cyb.web.model.po.Model;
-import com.cyb.web.model.po.Model2;
+import com.cyb.web.model.po.ModelExtend;
 import com.cyb.web.model.service.Model2Service;
 import com.cyb.web.model.service.ModelService;
 /**
@@ -72,8 +72,8 @@ public class StandardTest extends JunitBase {
 			System.out.println(model.getId()+","+model.getCzsj());
 		}
 		System.out.println("数据展示2");
-		List<Model2> list2 = (List<Model2>) service2.getList();
-		for(Model2 model:list2){
+		List<ModelExtend> list2 = (List<ModelExtend>) service2.getList();
+		for(ModelExtend model:list2){
 			System.out.println(model.getId()+","+model.getCzsj());
 		}
 		

@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.cyb.web.base.service.HibernateBaseService;
 import com.cyb.web.model.dao.Model2Dao;
-import com.cyb.web.model.po.Model2;
+import com.cyb.web.model.po.ModelExtend;
 /**
  * 作者 : iechenyb
  * 功能描述: 说点啥
  * 创建时间: 2017年07月16日 13时03分26秒
  */
 @Service("model2Service")
-public class Model2Service extends HibernateBaseService<Model2> {
+public class Model2Service extends HibernateBaseService<ModelExtend> {
    @Resource
    private Model2Dao model;
    /**
@@ -22,7 +22,7 @@ public class Model2Service extends HibernateBaseService<Model2> {
    * 功能描述: 说点啥
    * 创建时间: 2017年07月16日 13时03分26秒
    */
-   public List<Model2> getList(){
+   public List<ModelExtend> getList(){
    	 return model.getList();
    }
 }

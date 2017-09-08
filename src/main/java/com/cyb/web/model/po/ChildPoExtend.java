@@ -15,7 +15,7 @@ import com.cyb.web.base.po.BasePo;
 @Entity
 @Table(name="tb_study_child2")
 @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class ChildPo2 extends BasePo<String>{
+public class ChildPoExtend extends BasePo<String>{
 	
 	@Column(nullable=true,columnDefinition="varchar(40) DEFAULT ''comment '名称'")
     private String childName;

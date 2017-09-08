@@ -11,7 +11,7 @@ import com.alibaba.fastjson.JSON;
 import com.app.stock.DrawCodesUtils;
 import com.app.stock.RealQutoes;
 import com.app.stock.Stock;
-import com.cyb.base.BaseUtils;
+import com.cyb.base.SpringJunitBase;
 import com.cyb.file.ObjectFileUtils;
 import com.cyb.redis.qutoes.StockCodeUtils;
 /**
@@ -22,7 +22,7 @@ import com.cyb.redis.qutoes.StockCodeUtils;
 import com.cyb.web.redis.dao.RedisDao;
 
 import net.sf.json.JSONObject;
-public class StockInitTest extends BaseUtils{
+public class StockInitTest extends SpringJunitBase{
 	String base="com.cyb:";
 	Log log = LogFactory.getLog(StockInitTest.class);
 	@Autowired

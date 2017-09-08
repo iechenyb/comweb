@@ -18,8 +18,8 @@ import com.cyb.web.model.po.Model;
 		locations = { "classpath*:applicationContext.xml",  
 					  "classpath*:applicationContext-job.xml" , 
 					  "classpath*:applicationContext-redis.xml" })
-public class BaseUtils {
-	Log log = LogFactory.getLog(BaseUtils.class);
+public class SpringJunitBase {
+	Log log = LogFactory.getLog(SpringJunitBase.class);
 	public void show(List<Model> list){
 		for(Model model:list){
 			System.out.println(model.getId()+","+model.getCzsj());

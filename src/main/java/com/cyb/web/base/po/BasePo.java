@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
  *创建时间: 2017年7月20日
  */
 @MappedSuperclass
-public class BasePo <ID extends Serializable> {
+public class BasePo <ID extends Serializable> extends SuperAbstractPo {
 	
 	@Id
 	@GenericGenerator(strategy="uuid",name="user_uuid")

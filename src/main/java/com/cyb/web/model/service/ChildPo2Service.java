@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 import com.cyb.web.base.service.HibernateBaseService;
 import com.cyb.web.model.dao.ChildPo2Dao;
-import com.cyb.web.model.po.ChildPo2;
+import com.cyb.web.model.po.ChildPoExtend;
 /**
  * 作者 : iechenyb
  * 功能描述: 说点啥
  * 创建时间: 2017年07月16日 13时03分26秒
  */
 @Service("childPo2Service")
-public class ChildPo2Service extends HibernateBaseService<ChildPo2> {
+public class ChildPo2Service extends HibernateBaseService<ChildPoExtend> {
    @Autowired
    private ChildPo2Dao model;
    /**
@@ -21,7 +21,7 @@ public class ChildPo2Service extends HibernateBaseService<ChildPo2> {
    * 功能描述: 说点啥
    * 创建时间: 2017年07月16日 13时03分26秒
    */
-   public List<ChildPo2> getList(){
+   public List<ChildPoExtend> getList(){
    	 return model.getList();
    }
 }

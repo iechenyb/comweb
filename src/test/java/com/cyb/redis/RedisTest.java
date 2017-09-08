@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
-import com.cyb.base.BaseUtils;
+import com.cyb.base.SpringJunitBase;
 import com.cyb.collection.common.CollectionFactory;
 import com.cyb.collection.po.User;
 /**
@@ -22,7 +22,7 @@ import com.cyb.collection.po.User;
 import com.cyb.web.redis.dao.RedisDao;
 
 import net.sf.json.JSONObject;
-public class RedisTest extends BaseUtils{
+public class RedisTest extends SpringJunitBase{
 	Log log = LogFactory.getLog(RedisTest.class);
 	@Autowired
 	RedisDao dao;

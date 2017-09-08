@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
 import com.app.stock.RealQutoes;
-import com.cyb.base.BaseUtils;
+import com.cyb.base.SpringJunitBase;
 import com.cyb.web.redis.dao.RedisDao;
 import com.cyb.web.stock.constant.StockContant;
 import com.cyb.web.stock.utils.QutoesUtils;
@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
  *类描述: 说点啥<br>
  *创建时间: 2017年7月25日
  */
-public class StockQuery  extends BaseUtils{
+public class StockQuery  extends SpringJunitBase{
 	String base=StockContant.base;
 	Log log = LogFactory.getLog(StockQuery.class);
 	@Autowired

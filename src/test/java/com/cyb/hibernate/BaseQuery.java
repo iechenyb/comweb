@@ -6,11 +6,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cyb.base.BaseUtils;
+import com.cyb.base.SpringJunitBase;
 import com.cyb.date.DateUtil;
 import com.cyb.web.model.dao.ModelDao;
 import com.cyb.web.model.po.ChildPo;
-import com.cyb.web.model.po.ChildPo2;
+import com.cyb.web.model.po.ChildPoExtend;
 import com.cyb.web.model.po.Model;
 import com.cyb.web.model.service.ChildPo2Service;
 import com.cyb.web.model.service.ChildPoService;
@@ -22,7 +22,7 @@ import com.cyb.web.sw.service.SwService;
  *类描述: 说点啥<br>
  *创建时间: 2017年7月19日
  */
-public class BaseQuery extends BaseUtils{
+public class BaseQuery extends SpringJunitBase{
 	Log log = LogFactory.getLog(BaseQuery.class);
 	
 	@Autowired
@@ -70,11 +70,10 @@ public class BaseQuery extends BaseUtils{
 	    child.setCzsj(DateUtil.date2long14(new Date()).toString());
 	    childService.save(child);
 	    
-	    ChildPo2 child2 = new ChildPo2();
+	    ChildPoExtend child2 = new ChildPoExtend();
 	    child2.setChildName("iechenyb");
 	    child2.setCzsj(DateUtil.date2long14(new Date()).toString());
 	    childService2.save(child2);
-	    
 	   /* @SuppressWarnings("rawtypes")
 		BasePo child3 = new ChildPo2();
 	    child3.setChildName("chenyuanbao");
@@ -86,8 +85,8 @@ public class BaseQuery extends BaseUtils{
 			System.out.println(po.getId()+","+po.getChildName());
 		}
 		//---------------------------------------------------------
-		List<ChildPo2> list2 = childService2.list(ChildPo2.class);
-		for(ChildPo2 po:list2){
+		List<ChildPoExtend> list2 = childService2.list(ChildPoExtend.class);
+		for(ChildPoExtend po:list2){
 			System.out.println(po.getId()+","+po.getChildName());
 		}
 	}

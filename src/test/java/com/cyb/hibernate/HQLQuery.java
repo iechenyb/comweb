@@ -6,7 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cyb.base.BaseUtils;
+import com.cyb.base.SpringJunitBase;
 import com.cyb.web.hibernate.dao.ExtendDao;
 import com.cyb.web.hibernate.po.Clss;
 import com.cyb.web.hibernate.po.Student;
@@ -16,7 +16,7 @@ import com.cyb.web.hibernate.po.Student2;
  *类描述: 说点啥<br>
  *创建时间: 2017年7月19日
  */
-public class HQLQuery extends BaseUtils{
+public class HQLQuery extends SpringJunitBase{
 	Log log = LogFactory.getLog(HQLQuery.class);
 	@Autowired
 	ExtendDao dao;
@@ -80,5 +80,6 @@ public class HQLQuery extends BaseUtils{
 		hql ="from DbBean";
 		dao.testHql(hql);
 	}
+	
 	
 }
