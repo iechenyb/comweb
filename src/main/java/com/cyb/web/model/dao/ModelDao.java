@@ -22,7 +22,7 @@ public class ModelDao extends HibernateBaseDao<Model> implements GenericDao<Mode
     public List<Model> getList(){
        @SuppressWarnings("unchecked")
        List<Model> list = this.getSession().
-       createQuery("from Model2 where id= ?").setCacheable(false).
+       createQuery("from Model where id= ?").setCacheable(false).
        setString(0, "402890535d5e7239015d5e723ec20000").list();
 	   return list;
    }

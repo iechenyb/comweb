@@ -95,8 +95,9 @@ public class SpringStandardTest  {
 		MyBigDecimal bd = new MyBigDecimal();
 		BigDecimal val = new BigDecimal(value);
 		bd.setXiaoShu(val);
-		//bd.setId(1);
-		//bigService.save(bd);
+		bd.setId(1);
+		bigService.delete(bd);
+		bigService.save(bd);
 		bigService.get("1");
 	}
 }

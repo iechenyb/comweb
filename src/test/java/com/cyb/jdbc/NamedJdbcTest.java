@@ -49,11 +49,12 @@ public class NamedJdbcTest extends SpringJunitBase {
 		//dao.update(sql, ps, keyHolder);  //map不可以，必须有get set方法
 		//dao.update(sql, param);
 		/*Collections.synchronizedMap(new HashMap<>());*/
+		long s = System.currentTimeMillis();
 		HashMap<String,Object> params[]=new HashMap[1000];
 		for(int i=0;i<params.length;i++){
 			params[i]=param;
 		}
-		log.info("组装完成！");
+		
 		/*params[0]=param;
 		params[1]=param;
 		params[2]=param;
@@ -64,6 +65,8 @@ public class NamedJdbcTest extends SpringJunitBase {
 		params = (HashMap<String, Object>[]) maps.toArray();*/
 		//dao.getJdbcOperations().batchUpdate(null);
 		dao.batchUpdate(sql, params);
+		long e = System.currentTimeMillis();
+		log.info("组装完成！耗时"+(e-s)/1000);
 	}
 	@Test  
 	public void testBatchUpdate3() {  

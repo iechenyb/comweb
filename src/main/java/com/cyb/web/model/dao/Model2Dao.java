@@ -20,7 +20,7 @@ public class Model2Dao extends HibernateBaseDao<ModelExtend>{
 	 */
     public List<ModelExtend> getList(){
        @SuppressWarnings("unchecked")
-       List<ModelExtend> list = this.getSession().createQuery("from Model2").list();
+       List<ModelExtend> list = this.getSession().createQuery("from ModelExtend").list();
 	   return list;
    }
 }
