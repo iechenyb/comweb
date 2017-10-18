@@ -21,7 +21,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RedisDao {
+public class RedisDao{
 
 	@Resource(name = "redisTemplate")
 	protected RedisTemplate<String, Object> redisTemplate;

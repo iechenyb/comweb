@@ -1,5 +1,7 @@
 package com.cyb.redis;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -20,12 +22,15 @@ import com.cyb.collection.po.User;
  *创建时间: 2017年7月24日
  */
 import com.cyb.web.redis.dao.RedisDao;
+import com.cyb.web.redis.dao.UserRedisDao;
 
 import net.sf.json.JSONObject;
 public class RedisTest extends SpringJunitBase{
 	Log log = LogFactory.getLog(RedisTest.class);
 	@Autowired
 	RedisDao dao;
+	@Autowired
+	UserRedisDao dao2;
 	
 	@Test
 	public void  listStudy (){
@@ -115,6 +120,31 @@ public class RedisTest extends SpringJunitBase{
 		} finally {
 			
 		}
+	}
+	@Test
+	public void testOOD(){
+		User user = new User();
+		user.setId(1);
+		user.setName("chenyb");
+		List<User> userList = new ArrayList<User>();
+		dao2.setCacheObject("ood:obj:user", user.toString());
+		userList.add(user);
+		//dao2.setCacheList("ood:obj:userList", userList);//只能存储string list和set
+		Map<String,User> map = new HashMap<String,User>();
+		map.put("1", user);
+		dao2.setCacheMap("ood:map", map);
+		User t = (User)dao2.getCacheMap("ood:map").get("1");
+		System.out.println(t.getName());
+		Map<Integer,User> map1 = new HashMap<Integer,User>();
+		map1.put(1, user);	
+		dao2.setCacheIntegerMap("ood:map:int", map1);
+		User t1 = (User)dao2.getCacheMap("ood:map:int").get(1);
+		System.out.println(t1.getName());
+		
+		Set<User> userSet = new HashSet<User>();
+		userSet.add(user);
+		dao2.setCacheSet("ood:set", userSet);
+		System.out.println(dao2.getCacheSet("ood:set"));
 	}
 	
 }
