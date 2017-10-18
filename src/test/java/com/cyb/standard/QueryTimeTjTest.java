@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.cyb.web.model.po.Model;
 import com.cyb.web.model.service.ModelService;
 /**
  *作者 : iechenyb<br>
@@ -23,7 +24,7 @@ public class QueryTimeTjTest {
 	@Autowired
 	ModelService service;
 	@Test
-	public void test(){
+	public void testQuery(){
 		long s = System.currentTimeMillis();
 		for(int i=1;i<=10*10000;i++){
 			service.getAll();
@@ -34,6 +35,27 @@ public class QueryTimeTjTest {
 		s = System.currentTimeMillis();
 		for(int i=1;i<=100*10000;i++){
 			service.getAll();
+		}
+		e = System.currentTimeMillis();
+		log.info("用时："+(e-s)/1000.0+"s");//182s
+	}
+	
+	@Test
+	public void testUpdate(){
+		long s = System.currentTimeMillis();
+		Model model = new Model();
+		model.setCzymc("xxx");
+		model.setId("1");
+		service.save(model);
+		for(int i=1;i<=10*10000;i++){
+			service.update(model);
+		}
+		long e = System.currentTimeMillis();
+		log.info("用时："+(e-s)/1000.0+"s");//22s
+		
+		s = System.currentTimeMillis();
+		for(int i=1;i<=100*10000;i++){
+			service.update(model);
 		}
 		e = System.currentTimeMillis();
 		log.info("用时："+(e-s)/1000.0+"s");//182s

@@ -1,6 +1,7 @@
 package com.cyb.forkjoin;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
@@ -59,7 +60,13 @@ public class ForkJoinTest {
 		// 显示关于线程池演变的信息
 		long s = System.currentTimeMillis();
 		try {
-			while (!task.isDone()) {
+			try {
+				task.get();
+			} catch (ExecutionException e1) {
+				e1.printStackTrace();
+				
+			}
+		/*	while (!task.isDone()) {
 				// System.out.printf("Main: Thread Count: %d\n",
 				// pool.getActiveThreadCount());
 				// System.out.printf("Main: Thread Steal: %d\n",
@@ -67,7 +74,7 @@ public class ForkJoinTest {
 				// System.out.printf("Main: Parallelism: %d\n",
 				// pool.getParallelism());
 				Thread.sleep(50);
-			}
+			}*/
 			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -79,11 +86,11 @@ public class ForkJoinTest {
 			System.out.println("Main: The process has completed normally.");
 		}
 		// 确认是否所有的价格都已经改变
-		for (int i = 0; i < products.size(); i++) {
+		/*for (int i = 0; i < products.size(); i++) {
 			Product product = products.get(i);
 			if (product.getPrice() != 12)
 				System.out.printf("Product %s: %f\n", product.getName(), product.getPrice());
-		}
+		}*/
 		service.updateProduct(products);
 		System.out.println("Main: End of the program."+"共耗时：" + (e - s) / 1000+"."+(e - s) % 1000);
 		System.out.println();
@@ -123,6 +130,7 @@ public class ForkJoinTest {
 				Product product = products.get(i);
 				product.setPrice(product.getPrice() * (1 + increasement));
 				// service.update(product);
+				//并发计算尽量不要过多的操作数据库，否则效率很低。
 			}
 		}
 	}

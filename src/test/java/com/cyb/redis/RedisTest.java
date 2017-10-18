@@ -69,7 +69,10 @@ public class RedisTest extends SpringJunitBase{
 		String key=keyBase+":iechenyb";
 		dao.hSet(key, "name", "iechenyb");
 		dao.hSet(key, "age", "20");
-		log.info(new String(dao.hGet(key, "name")));
+		dao.hSet("某个赛季某日某个类型", "资金账号", "成绩值{json}");
+		log.info(new String(dao.hGet(key, "age")));
+		dao.hSet(key, "age", "200");
+		dao.del("某个赛季某日某个类型");
 		log.info(dao.hLen(key));//获取某个key的长度 字段个数
 		log.info(dao.hGetAll(key).keySet());
 		Set<byte[]> it = dao.hGetAll(key).keySet();
