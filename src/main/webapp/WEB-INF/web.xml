@@ -11,6 +11,9 @@
 	<listener>
 		<listener-class>com.cyb.web.listener.WebListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>com.cyb.servlet.ServletWork</listener-class>
+	</listener>
 	<!-- 配置Spring监听 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -37,6 +40,13 @@
 			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>BlockingServlet</display-name>
+		<servlet-name>BlockingServlet</servlet-name>
+		<servlet-class>com.cyb.servlet.BlockingServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springMVC</servlet-name>
@@ -106,9 +116,8 @@
 		<exception-type>org.hibernate.ObjectNotFoundException</exception-type>
 		<location>/exception/404.jsp</location>
 	</error-page>
-	<servlet-mapping>  
-	   <servlet-name>default</servlet-name>  
-	   <url-pattern>*.js</url-pattern>  
+	<!-- <servlet-mapping>  
+	   <url-pattern>*.js</url-pattern> 
 	   <url-pattern>*.css</url-pattern>  
 	   <url-pattern>*.jpg</url-pattern>  
 	   <url-pattern>*.png</url-pattern> 
@@ -118,5 +127,9 @@
 	   <url-pattern>*.swf</url-pattern> 
 	   <url-pattern>*.html</url-pattern> 
 	   <url-pattern>*.json</url-pattern> 
-	 </servlet-mapping>
+	 </servlet-mapping> -->
+	<!-- <servlet-mapping>
+		<servlet-name>BlockingServlet</servlet-name>
+		<url-pattern>/BlockingServlet</url-pattern>
+	</servlet-mapping> -->
 </web-app>
