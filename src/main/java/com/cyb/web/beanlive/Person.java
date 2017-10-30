@@ -15,8 +15,11 @@ import org.springframework.beans.factory.InitializingBean;
  * 创建时间: 2017年8月22日
  */
 
-public class Person implements BeanFactoryAware, BeanNameAware,
-InitializingBean, DisposableBean {
+public class Person implements 
+BeanFactoryAware,
+BeanNameAware,
+InitializingBean,
+DisposableBean {
 	Log log = LogFactory.getLog(Person.class);
 	private String name;
 	private String address;
