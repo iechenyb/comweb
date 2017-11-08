@@ -31,7 +31,7 @@ public class MyJob {
      * @throws Exception 
      */  
     public void doSomething() throws Exception {  
-        log.info("***********************"+step+"***********************");
+        //log.info("***********************"+step+"***********************");
     }  
     /** 
      * 重设定时器表达式 

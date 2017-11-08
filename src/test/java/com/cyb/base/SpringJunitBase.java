@@ -17,7 +17,7 @@ import com.cyb.web.model.po.Model;
 @ContextConfiguration(
 		locations = { "classpath*:applicationContext.xml",  
 					  "classpath*:applicationContext-job.xml" ,
-					  "classpath*:applicationContext-mongodb.xml",
+					  //"classpath*:applicationContext-mongodb.xml",
 					  "classpath*:applicationContext-redis.xml" })
 public class SpringJunitBase {
 	Log log = LogFactory.getLog(SpringJunitBase.class);

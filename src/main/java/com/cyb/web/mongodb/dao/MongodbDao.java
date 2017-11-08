@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  * 类描述: 说点啥<br>
  * 创建时间: 2017年10月18日
  */
-@Component
+//@Component
 public class MongodbDao<T extends IdEntity> {
 	Logger logger = LoggerFactory.getLogger(MongodbDao.class);
 	private static final int DEFAULT_SKIP = 0;

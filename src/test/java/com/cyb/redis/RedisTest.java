@@ -44,6 +44,8 @@ public class RedisTest extends SpringJunitBase{
 		dao.lpush(key,"1");//允许重复
 		dao.lpush(key, JSONObject.fromObject(user).toString());
 		dao.lpush(key, JSONObject.fromObject(user).toString());
+		dao.rPop(key);//弹出队头的元素
+		dao.lPop(key);//弹出队尾的元素
 		for(int i=0;i<dao.lLen("list");i++){
 			String value = dao.lIndex("list", i);
 			if(value.contains("username")){

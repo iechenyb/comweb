@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.cyb.web.mongodb.dao.UserMGDao;
 import com.cyb.web.mongodb.dao.UserXDao;
 import com.cyb.web.mongodb.vo.UserX;
-@Service
+//@Service
 public class MongoDbService {
 	Log log = LogFactory.getLog(MongoDbService.class);
 	@Autowired

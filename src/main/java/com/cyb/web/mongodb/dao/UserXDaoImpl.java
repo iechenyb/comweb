@@ -16,7 +16,7 @@ import com.cyb.web.mongodb.vo.UserX;
  *类描述: 说点啥<br>
  *创建时间: 2017年10月18日
  */
-@Repository("userMGDaoImpl")  
+//@Repository("userMGDaoImpl")  
 public class UserXDaoImpl implements UserXDao {  
       
     @Resource  

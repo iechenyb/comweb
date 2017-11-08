@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
  *类描述: 说点啥<br>
  *创建时间: 2017年10月18日
  */
-@Repository
+//@Repository
 public class UserMGDao extends MongodbDao<IdEntity> {
 }
