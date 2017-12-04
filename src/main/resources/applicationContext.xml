@@ -28,8 +28,29 @@
 	</context:component-scan> 
 	<mvc:annotation-driven/> 
 	<!-- c3po连接池配置 -->
-	 <context:property-placeholder location="classpath:db-test.properties" system-properties-mode="OVERRIDE"
-	     order="2" ignore-unresolvable="false"/>
+	<!-- 将多个配置文件读取到容器中，交给Spring管理 -->  
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+           <list>  
+              <!-- 这里支持多种寻址方式：classpath和file -->  
+              <value>classpath:db-test.properties</value>  
+              <!-- 推荐使用file的方式引入，这样可以将配置和代码分离 -->  
+              <value>classpath:mail.properties</value>    
+            </list>  
+        </property>  
+    </bean>  
+	<!-- <bean id="refProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	    <property name="locations">
+	        <list>
+	            <value>classpath:db-test.properties</value>
+	            <value>classpath:mail.properties</value>
+	        </list>
+	    </property>
+	</bean> -->
+	  <context:property-placeholder location="classpath:db-test.properties,classpath:mail.properties" 
+	     ignore-unresolvable="true"	
+	     system-properties-mode="OVERRIDE"
+	     order="2" /> 
 	<!--  <beans profile="dev">
 	      <context:property-placeholder location="classpath:db-dev.properties"/>
 	 </beans>
