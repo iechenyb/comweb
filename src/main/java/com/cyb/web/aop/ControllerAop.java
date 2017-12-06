@@ -40,6 +40,7 @@ public class ControllerAop {
 		
 	}// 定义一个切入点
 
+	
 	@Before("anyMethod()")
 	public void doAccessCheck(JoinPoint call) throws Exception {
 		String clazz = call.getTarget().getClass().getName();
