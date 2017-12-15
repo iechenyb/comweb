@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -46,7 +47,24 @@ public final class MyRequestWrapper extends HttpServletRequestWrapper {
             @Override  
             public int read() throws IOException {  
                 return bais.read();  
-            }  
+            }
+
+			@Override
+			public boolean isFinished() {
+				return false;
+			}
+
+			@Override
+			public boolean isReady() {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+			@Override
+			public void setReadListener(ReadListener arg0) {
+				// TODO Auto-generated method stub
+				
+			}  
         };  
     }  
 	public List<String> getAllParameterNameAndValues() {

@@ -18,7 +18,7 @@ import com.cyb.web.example.annotation.MyController;
  *作者 : iechenyb<br>
  *类描述: 说点啥<br>
  *创建时间: 2017年12月6日
- *http://localhost:8088/projectname/hello/123
+ *http://localhost:8088/comweb/example/hello/123.do
  */
 @RequestMapping("example")
 @Controller

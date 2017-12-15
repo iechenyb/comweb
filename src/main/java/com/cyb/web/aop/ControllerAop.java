@@ -33,7 +33,13 @@ import com.cyb.web.example.annotation.MyController;
 public class ControllerAop {
 	public static String TESTKEY = "USER_NAME_TEST";
 	Log log = LogFactory.getLog(ControllerAop.class);
-
+	final static  int i;
+	static{
+		i=2;
+		HttpServletRequest request
+		= ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+	}
 	// 任何通知方法都可以将第一个参数定义为 org.aspectj.lang.JoinPoint类型
 	@Pointcut("execution(* com.cyb.web..controller..*(..))")
 	private void anyMethod() {
