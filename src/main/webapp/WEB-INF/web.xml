@@ -14,9 +14,9 @@
 	<listener>
 		<listener-class>com.cyb.servlet.ServletWork</listener-class>
 	</listener>
-	<!-- 配置Spring监听 -->
+	<!-- 配置Spring监听org.springframework.web.context.ContextLoaderListener -->
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>com.cyb.web.listener.IechenybContextLoaderListener</listener-class>
 	</listener>
     <!-- 配置字符集 -->
 	<filter>
