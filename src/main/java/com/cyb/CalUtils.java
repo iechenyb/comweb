@@ -2,6 +2,7 @@ package com.cyb;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.alibaba.druid.filter.config.ConfigTools;
 import com.cyb.redis.TB_A;
 /**
  *作者 : iechenyb<br>
@@ -10,6 +11,15 @@ import com.cyb.redis.TB_A;
  */
 public class CalUtils {
 	Log log = LogFactory.getLog(CalUtils.class);
+	public static void main(String[] args) {
+		try {
+			TB_A a;
+			System.out.println("加密："+ConfigTools.encrypt("123"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
 	public static TB_A calLjdwjz(TB_A cur,TB_A pre){
 		cur.setSrqy(pre.getDrqy());//计算当日的上日权益
 		cur.setDrjyk(cur.getDrqy()-cur.getSrqy()-cur.getDrjrj());//计算当日净盈亏

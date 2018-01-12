@@ -179,4 +179,14 @@
 		     <constructor-arg ref="dataSource"></constructor-arg>
      	</bean>
      	<bean id="myUserDetailServiceImpl" class="com.cyb.security.MyUserDetailServiceImpl"/>
+		
+		<!-- <beans profile="test">
+         <context:property-placeholder ignore-resource-not-found="true"
+            location="classpath*:/application.properties,
+                      classpath*:/application.test.properties" />   -->
+		<!-- 初始化数据表结构 -->
+      <!--   <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+            <jdbc:script location="classpath:sql/h2/schema.sql" />
+            <jdbc:script location="classpath:data/h2/import-data.sql" encoding="UTF-8"/>
+        </jdbc:initialize-database> -->
 </beans>
