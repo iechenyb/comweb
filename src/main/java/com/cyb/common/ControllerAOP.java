@@ -2,6 +2,7 @@ package com.cyb.common;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,14 @@ import org.slf4j.LoggerFactory;
 public class ControllerAOP {
 	Log log = LogFactory.getLog(ControllerAOP.class);
 	private static final Logger logger = LoggerFactory.getLogger(ControllerAOP.class);
+	protected Logger getLog(final JoinPoint joinPoint) {
+        final Object target = joinPoint.getTarget();
+        if (target != null) {
+            return LoggerFactory.getLogger(target.getClass());
+        }
 
+        return LoggerFactory.getLogger(getClass());
+    }
 	public Object handlerControllerMethod(ProceedingJoinPoint pjp) {
 		long startTime = System.currentTimeMillis();
 		ResultBean<?> result;
@@ -38,6 +46,10 @@ public class ControllerAOP {
 			result.setMsg(e.toString());
 			result.setCode(ResultBean.FAIL);
 			// 未知异常是应该重点关注的，这里可以做其他操作，如通知邮件，单独写到某个文件等等。
+		}
+		Logger log = getLog(pjp);
+		if(log.isDebugEnabled()){
+			log.debug("异常出现了！");
 		}
 		return result;
 	}

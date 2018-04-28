@@ -125,8 +125,11 @@
                 <value>
                     /com/cyb/po/Db2*.java 
                 </value>
+               <!--包下包含po和对应的hbm文件 如 xxxx.java,则xxxx.hbm.xml  
+               <value>classpath:/com/cyb/po/</value> -->
             </list>
          </property>
+         <!-- 仅仅配置hbm文件 -->
 	     <property name="mappingResources">
 	        <list>
 	            <value>/com/cyb/po/Db2Bean.hbm.xml</value> 

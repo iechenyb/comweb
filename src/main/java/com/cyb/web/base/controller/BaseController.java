@@ -71,7 +71,9 @@ public class BaseController {
 	@ExceptionHandler
 	@ResponseBody
     public Map<String, Object> doException(Exception e,HttpServletRequest request) throws Exception {
-        if (e instanceof MaxUploadSizeExceededException) {
+		if(isJson(request)) {
+            return msgMap;
+        }else if (e instanceof MaxUploadSizeExceededException) {
             long maxSize = ((MaxUploadSizeExceededException) e)
                     .getMaxUploadSize();
            setMsgMap(FAILURE, "上传文件太大，不能超过" + maxSize / 1024 + "k");
@@ -95,4 +97,9 @@ public class BaseController {
 		out.flush();
 		
 	}
+	private Boolean isJson(HttpServletRequest request){
+        String header = request.getHeader("content-type");
+        return header != null && header.contains("json");
+    }
+
 }

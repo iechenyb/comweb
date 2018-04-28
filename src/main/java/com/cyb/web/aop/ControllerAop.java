@@ -36,9 +36,9 @@ public class ControllerAop {
 	final static  int i;
 	static{
 		i=2;
-		HttpServletRequest request
+		/*HttpServletRequest request
 		= ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-				.getRequest();
+				.getRequest();*/
 	}
 	// 任何通知方法都可以将第一个参数定义为 org.aspectj.lang.JoinPoint类型
 	@Pointcut("execution(* com.cyb.web..controller..*(..))")

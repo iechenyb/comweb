@@ -76,6 +76,12 @@ public class HQLQuery extends SpringJunitBase{
 	@Test
 	public void testPackagesToScanHql(){
 		String hql="from Db2Bean";
+		/*bean不存在，理论上后台应该出现报错日志，
+		 * 但是因为log4j的日志级别为infor，
+		 * 所以后台不能显示错误
+		 * 将日志级别调整到debug则可以看到后台的dao底层错误。
+		 * 生产上程序一摸一样，但是执行效果却不同，则可能出现表结构不一致的情况。
+		 * */
 		dao.testHql(hql);
 		hql ="from DbBean";
 		dao.testHql(hql);
